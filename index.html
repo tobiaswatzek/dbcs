@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>dbcs</title>
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+
+<body class="flex flex-col h-full">
+<header x-data class="py-4 px-2">
+    <div class="flex justify-between ">
+        <div class="flex flex-row justify-between gap-2 items-center">
+            <div>
+                <h1 class="text-xl"
+                    x-text="$store.character.name || 'Character'"></h1>
+                <div x-show="$store.character.profession || $store.character.kin">
+                    <span x-text="$store.character.profession"></span> | <span
+                        x-text="$store.character.kin"></span>
+                </div>
+            </div>
+            <button class="btn" onclick="characterBasics.showModal()">Edit
+            </button>
+        </div>
+        <div>
+            <div class="flex items-center justify-between gap-1">
+                <div class="text-sm">Hit Points</div>
+                <button class="btn btn-xs"
+                        @click="$store.character.hitPoints = $store.character.maxHitPoints">
+                    Reset
+                </button>
+            </div>
+            <div class="flex items-center gap-1">
+                <label class="sr-only" for="hitPoints">Current Hit
+                    Points</label>
+                <input type="number" id="hitPoints" class="input w-20" step="1"
+                       x-model="$store.character.hitPoints"/>
+                <div>/</div>
+                <label class="sr-only" for="maxHitPoints">Maximum Hit
+                    Points</label>
+                <input type="number" id="maxHitPoints" step="1"
+                       class="input input-ghost w-20"
+                       x-model="$store.character.maxHitPoints"/>
+            </div>
+        </div>
+    </div>
+    <dialog id="characterBasics" class="modal">
+        <div class="modal-box">
+            <form method="dialog">
+                <h1 class="text-lg font-bold">Edit Basics</h1>
+                <div>
+                    <label for="characterName" class="label">Name</label>
+                    <input x-model="$store.character.name" name="characterName"
+                           id="characterName" type="text"
+                           class="input w-full"/>
+                </div>
+                <div>
+                    <label class="label" for="profession">Profession</label>
+                    <input type="text" list="professions" class="input w-full"
+                           id="profession" name="profession"
+                           x-model="$store.character.profession"
+                    />
+                    <datalist id="professions">
+                        <option value="Artisan">
+                        <option value="Bard">
+                        <option value="Fighter">
+                        <option value="Hunter">
+                        <option value="Knight">
+                        <option value="Mage">
+                        <option value="Mariner">
+                        <option value="Merchant">
+                        <option value="Scholar">
+                        <option value="Thief">
+                    </datalist>
+                </div>
+                <div>
+                    <label class="label" for="kin">Kin</label>
+                    <input type="text" list="kins" class="input w-full" id="kin"
+                           name="kin" x-model="$store.character.kin"
+                    />
+                    <datalist id="kins">
+                        <option value="Dwarf">
+                        <option value="Elf">
+                        <option value="Human">
+                        <option value="Halfling">
+                        <option value="Mallard">
+                        <option value="Wolfkin">
+                    </datalist>
+                </div>
+                <div class="modal-action">
+                    <button class="btn">Done</button>
+                </div>
+            </form>
+
+        </div>
+    </dialog>
+
+</header>
+<nav x-data role="tablist" class="tabs tabs-box w-full justify-center">
+    <button role="tab" class="tab" @click="$store.activeTab = 'skills'"
+            :class="$store.activeTab === 'skills' && 'tab-active'">Skills
+    </button>
+    <button role="tab" class="tab" @click="$store.activeTab = 'combat'"
+            :class="$store.activeTab === 'combat' && 'tab-active'">Combat
+    </button>
+    <button role="tab" class="tab" @click="$store.activeTab = 'inventory'"
+            :class="$store.activeTab === 'inventory' && 'tab-active'">Inventory
+    </button>
+    <button role="tab" class="tab" @click="$store.activeTab = 'basic'"
+            :class="$store.activeTab === 'basic' && 'tab-active'">Basic
+    </button>
+</nav>
+<main x-data class="p-2">
+    <div x-show="$store.activeTab === 'skills'">
+        Skills
+    </div>
+    <div x-show="$store.activeTab === 'combat'">
+        Combat
+    </div>
+    <div x-show="$store.activeTab === 'inventory'">
+        Inventory
+    </div>
+    <div x-show="$store.activeTab === 'basic'">
+        <fieldset
+                class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
+            <legend class="fieldset-legend">Basic Information</legend>
+
+            <div>
+                <label class="label" for="weakness">Weakness</label>
+                <textarea id="weakness" class="textarea "
+                          x-model="$store.character.weakness"></textarea>
+            </div>
+
+        </fieldset>
+    </div>
+</main>
+<div x-data class="w-full">
+    <pre> <code x-text="JSON.stringify($store.character, null, 2)"></code></pre>
+</div>
+<script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
