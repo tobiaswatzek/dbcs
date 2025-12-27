@@ -75,51 +75,51 @@
     <dialog id="characterBasics" class="modal">
         <div class="modal-box">
             <form method="dialog">
-                <h1 class="text-lg font-bold">Edit Basics</h1>
-                <div>
-                    <label for="characterName" class="label">Name</label>
-                    <input x-model="$store.character.name" name="characterName"
-                           id="characterName" type="text"
-                           class="input w-full"/>
-                </div>
-                <div>
-                    <label class="label" for="profession">Profession</label>
-                    <input type="text" list="professions" class="input w-full"
-                           id="profession" name="profession"
-                           x-model="$store.character.profession"
-                    />
-                    <datalist id="professions">
-                        <option value="Artisan">
-                        <option value="Bard">
-                        <option value="Fighter">
-                        <option value="Hunter">
-                        <option value="Knight">
-                        <option value="Mage">
-                        <option value="Mariner">
-                        <option value="Merchant">
-                        <option value="Scholar">
-                        <option value="Thief">
-                    </datalist>
-                </div>
-                <div>
-                    <label class="label" for="kin">Kin</label>
-                    <input type="text" list="kins" class="input w-full" id="kin"
-                           name="kin" x-model="$store.character.kin"
-                    />
-                    <datalist id="kins">
-                        <option value="Dwarf">
-                        <option value="Elf">
-                        <option value="Human">
-                        <option value="Halfling">
-                        <option value="Mallard">
-                        <option value="Wolfkin">
-                    </datalist>
-                </div>
-                <div class="modal-action">
-                    <button class="btn">Done</button>
-                </div>
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                    <span class="sr-only">Close</span><span
+                        aria-hidden="true">✕</span>
+                </button>
             </form>
-
+            <h1 class="text-lg font-bold">Edit Basics</h1>
+            <div>
+                <label for="characterName" class="label">Name</label>
+                <input x-model="$store.character.name" name="characterName"
+                       id="characterName" type="text"
+                       class="input w-full"/>
+            </div>
+            <div>
+                <label class="label" for="profession">Profession</label>
+                <input type="text" list="professions" class="input w-full"
+                       id="profession" name="profession"
+                       x-model="$store.character.profession"
+                />
+                <datalist id="professions">
+                    <option value="Artisan">
+                    <option value="Bard">
+                    <option value="Fighter">
+                    <option value="Hunter">
+                    <option value="Knight">
+                    <option value="Mage">
+                    <option value="Mariner">
+                    <option value="Merchant">
+                    <option value="Scholar">
+                    <option value="Thief">
+                </datalist>
+            </div>
+            <div>
+                <label class="label" for="kin">Kin</label>
+                <input type="text" list="kins" class="input w-full" id="kin"
+                       name="kin" x-model="$store.character.kin"
+                />
+                <datalist id="kins">
+                    <option value="Dwarf">
+                    <option value="Elf">
+                    <option value="Human">
+                    <option value="Halfling">
+                    <option value="Mallard">
+                    <option value="Wolfkin">
+                </datalist>
+            </div>
         </div>
     </dialog>
 </header>
@@ -246,7 +246,8 @@
                                class="checkbox checkbox-sm "/>
                         <label :for="`mark-${skillName}`" class="sr-only"
                                x-text="`Mark ${$store.character.skills[skillName].label}`"></label>
-                        <label :for="`value-${skillName}`"  x-text="$store.character.skills[skillName].label"></label>
+                        <label :for="`value-${skillName}`"
+                               x-text="$store.character.skills[skillName].label"></label>
                     </div>
                     <input type="number"
                            :id="`value-${skillName}`"
@@ -255,6 +256,66 @@
                 </div>
             </template>
         </div>
+        <div class="flex items-center justify-center gap-2 mt-4">
+            <h3 class="text-lg ">Secondary Skills</h3>
+            <button class="btn btn-sm"
+                    onclick="document.querySelector('#addSecondarySkill').showModal()">
+                Add
+            </button>
+            <dialog x-data="{label: ''}" id="addSecondarySkill" class="modal">
+                <div class="modal-box">
+
+                    <h1 class="text-lg font-bold">Add Secondary Skill</h1>
+                    <form method="dialog"
+                          @submit="$store.character.secondarySkills.push({label: label, value: 0, marked: false}); label = '';">
+
+                        <div>
+                            <label for="secondarySkillLabel"
+                                   class="label">Name</label>
+                            <input x-model="label"
+                                   name="secondarySkillLabel"
+                                   id="secondarySkillLabel" type="text"
+                                   required
+                                   class="input validator w-full"/>
+                        </div>
+                        <div class="modal-action">
+                            <button class="btn" type="reset"
+                                    @click="document.querySelector('#addSecondarySkill').close()"
+                            >
+                                Cancel
+                            </button>
+                            <button class="btn"
+                                    :disabled="label.trim() === ''"
+                                    type="submit">
+                                Add Skill
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </dialog>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-2 gap-4">
+            <template x-for="(skill, index) in $store.character.secondarySkills"
+                      :key="index">
+                <div class="flex items-center justify-between p-2 bg-base-200/30 rounded-lg">
+                    <div class="flex items-center gap-2">
+                        <input :id="`mark-skill-${index}`" type="checkbox"
+                               x-model="skill.marked"
+                               class="checkbox checkbox-sm "/>
+                        <label :for="`mark-skill-${index}`" class="sr-only"
+                               x-text="`Mark ${skill.label}`"></label>
+                        <label :for="`value-skill-${index}`"
+                               x-text="skill.label"></label>
+                    </div>
+                    <input type="number"
+                           :id="`value-skill-${index}`"
+                           x-model="skill.value"
+                           class="input input-sm w-16 text-right" step="1"/>
+                </div>
+            </template>
+        </div>
+
     </div>
     <div x-show="$store.activeTab === 'combat'">
         Combat
