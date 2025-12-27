@@ -1,5 +1,12 @@
 import Alpine from "alpinejs";
 
+declare global {
+  // Note the capital "W"
+  interface Window {
+    Alpine: typeof Alpine;
+  }
+}
+
 window.Alpine = Alpine;
 
 Alpine.store("activeTab", "skills");
@@ -14,17 +21,20 @@ Alpine.store("character", {
   memento: "",
 
   // Attributes
-  str: 0,
-  con: 0,
-  agl: 0,
-  int: 0,
-  wil: 0,
-  cha: 0,
+  attributes: {
+    str: 0,
+    con: 0,
+    agl: 0,
+    int: 0,
+    wil: 0,
+    cha: 0,
+  },
 
   // Derived stats
   hitPoints: 0,
   maxHitPoints: 0,
   willpowerPoints: 0,
+  maxWillpowerPoints: 0,
   movement: 0,
   damageBonStr: 0,
   damageBonAgl: 0,
@@ -95,6 +105,5 @@ Alpine.store("character", {
   // Abilities
   abilities: "",
 });
-
 
 Alpine.start();
