@@ -257,7 +257,7 @@
             </template>
         </div>
         <div class="flex items-center justify-center gap-2 mt-4">
-            <h3 class="text-lg ">Secondary Skills</h3>
+            <h2 class="text-lg">Secondary Skills</h2>
             <button class="btn btn-sm"
                     onclick="document.querySelector('#addSecondarySkill').showModal()">
                 Add
@@ -318,7 +318,30 @@
 
     </div>
     <div x-show="$store.activeTab === 'combat'">
-        Combat
+
+        <h2 class="text-lg mb-4">Weapon Skills</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-2 gap-4">
+            <template
+                    x-for="skillName in Object.keys($store.character.weaponSkills)"
+                    :key="skillName">
+                <div class="flex items-center justify-between p-2 bg-base-200/30 rounded-lg">
+                    <div class="flex items-center gap-2">
+                        <input :id="`mark-${skillName}`" type="checkbox"
+                               x-model="$store.character.weaponSkills[skillName].marked"
+                               class="checkbox checkbox-sm "/>
+                        <label :for="`mark-${skillName}`" class="sr-only"
+                               x-text="`Mark ${$store.character.weaponSkills[skillName].label}`"></label>
+                        <label :for="`value-${skillName}`"
+                               x-text="$store.character.weaponSkills[skillName].label"></label>
+                    </div>
+                    <input type="number"
+                           :id="`value-${skillName}`"
+                           x-model="$store.character.weaponSkills[skillName].value"
+                           class="input input-sm w-16 text-right" step="1"/>
+                </div>
+            </template>
+        </div>
     </div>
     <div x-show="$store.activeTab === 'inventory'">
         Inventory

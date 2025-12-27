@@ -195,16 +195,16 @@ const initialCharacter: Character = {
 
   // Weapon skills
   weaponSkills: {
-    axes: { label: "Axes", value: 0, marked: false },
-    bows: { label: "Bows", value: 0, marked: false },
-    brawling: { label: "Brawling", value: 0, marked: false },
-    crossbows: { label: "Crossbows", value: 0, marked: false },
-    hammers: { label: "Hammers", value: 0, marked: false },
-    knives: { label: "Knives", value: 0, marked: false },
-    slings: { label: "Slings", value: 0, marked: false },
-    spears: { label: "Spears", value: 0, marked: false },
-    staves: { label: "Staves", value: 0, marked: false },
-    swords: { label: "Swords", value: 0, marked: false },
+    axes: { label: "Axes (STR)", value: 0, marked: false },
+    bows: { label: "Bows (AGL)", value: 0, marked: false },
+    brawling: { label: "Brawling (STR)", value: 0, marked: false },
+    crossbows: { label: "Crossbows (AGL)", value: 0, marked: false },
+    hammers: { label: "Hammers (STR)", value: 0, marked: false },
+    knives: { label: "Knives (AGL)", value: 0, marked: false },
+    slings: { label: "Slings (AGL)", value: 0, marked: false },
+    spears: { label: "Spears (STR)", value: 0, marked: false },
+    staves: { label: "Staves (AGL)", value: 0, marked: false },
+    swords: { label: "Swords (STR)", value: 0, marked: false },
   },
 
   secondarySkills: [],
@@ -214,7 +214,7 @@ const initialCharacter: Character = {
   armor: { rating: 0, banes: [] },
   helmet: { rating: 0, banes: [] },
   inventory: [],
-  tinyItems: "",
+  tinyItems: [],
 
   // Abilities
   abilities: "",
