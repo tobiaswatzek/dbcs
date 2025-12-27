@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
     <title>dbcs</title>
     <link rel="stylesheet" href="/src/style.css">
 </head>
 
-<body class="flex flex-col h-full">
+<body class="flex flex-col h-full mb-22">
 <header x-data class="py-4 px-2">
     <div class="grid grid-cols-2 md:grid-cols-3 grid-rows-2 lg:grid-cols-6 lg:grid-rows-1 gap-1">
         <div class="col-span-2 md:col-span-3 lg:col-span-4 flex flex-row lg:justify-normal gap-2 items-center">
@@ -201,7 +201,8 @@
     </div>
 
 </header>
-<nav x-data role="tablist" class="tabs tabs-box w-full justify-center">
+<nav x-data role="tablist"
+     class="hidden md:flex md:tabs tabs-box w-full justify-center">
     <button role="tab" class="tab" @click="$store.activeTab = 'skills'"
             :class="$store.activeTab === 'skills' && 'tab-active'">Skills
     </button>
@@ -213,6 +214,24 @@
     </button>
     <button role="tab" class="tab" @click="$store.activeTab = 'basic'"
             :class="$store.activeTab === 'basic' && 'tab-active'">Basic
+    </button>
+</nav>
+<nav x-data class="dock md:hidden">
+    <button @click="$store.activeTab = 'skills'"
+            :class="$store.activeTab === 'skills' && 'dock-active'"><span
+            class="dock-label">Skills</span>
+    </button>
+    <button @click="$store.activeTab = 'combat'"
+            :class="$store.activeTab === 'combat' && 'dock-active'"><span
+            class="dock-label">Combat</span>
+    </button>
+    <button @click="$store.activeTab = 'inventory'"
+            :class="$store.activeTab === 'inventory' && 'dock-active'"><span
+            class="dock-label">Inventory</span>
+    </button>
+    <button @click="$store.activeTab = 'basic'"
+            :class="$store.activeTab === 'basic' && 'dock-active'"><span
+            class="dock-label">Basic</span>
     </button>
 </nav>
 <main x-data class="p-2">
