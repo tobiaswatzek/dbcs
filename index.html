@@ -143,12 +143,14 @@
     </button>
 </nav>
 <main x-data class="p-2">
-    <div class="mb-4 grid grid-cols-3 lg:grid-cols-6 gap-2 border-base-200 border-2 rounded-lg p-2">
+    <fieldset class="fieldset grid grid-cols-3 lg:grid-cols-6 gap-x-2 gap-y-8 border-base-300 rounded-box  border p-4">
+        <legend class="fieldset-legend">Attributes</legend>
         <div class="flex flex-col items-center gap-2">
             <div class="flex flex-col items-center gap-1">
-                <label class="label" for="strength">Strength</label>
-                <input type="number" id="strength" class="input w-20" step="1"
-                       x-model="$store.character.attributes.str"/>
+                <label class="label floating-label"><span>Strength</span>
+                    <input type="number" id="strength" class="input w-20"
+                           step="1"
+                           x-model="$store.character.attributes.str"/></label>
             </div>
             <label class="label text-sm">
                 <input type="checkbox" x-model="$store.character.exhausted"
@@ -158,10 +160,10 @@
         </div>
         <div class="flex flex-col items-center gap-2">
             <div class="flex flex-col items-center gap-1">
-                <label class="label" for="constitution">Constitution</label>
-                <input type="number" id="constitution" class="input w-20"
-                       step="1"
-                       x-model="$store.character.attributes.con"/>
+                <label class="label floating-label"><span>Constitution</span>
+                    <input type="number" id="constitution" class="input w-20"
+                           step="1"
+                           x-model="$store.character.attributes.con"/></label>
             </div>
             <label class="label text-sm">
                 <input type="checkbox"
@@ -171,9 +173,10 @@
         </div>
         <div class="flex flex-col items-center gap-2">
             <div class="flex flex-col items-center gap-1">
-                <label class="label" for="agility">Agility</label>
-                <input type="number" id="agility" class="input w-20" step="1"
-                       x-model="$store.character.attributes.agl"/>
+                <label class="label floating-label"><span>Agility</span>
+                    <input type="number" id="agility" class="input w-20"
+                           step="1"
+                           x-model="$store.character.attributes.agl"/></label>
             </div>
             <label class="label text-sm">
                 <input type="checkbox"
@@ -183,10 +186,10 @@
         </div>
         <div class="flex flex-col items-center gap-2">
             <div class="flex flex-col items-center gap-1">
-                <label class="label" for="intelligence">Intelligence</label>
-                <input type="number" id="intelligence" class="input w-20"
-                       step="1"
-                       x-model="$store.character.attributes.int"/>
+                <label class="label floating-label"><span>Intelligence</span>
+                    <input type="number" id="intelligence" class="input w-20"
+                           step="1"
+                           x-model="$store.character.attributes.int"/></label>
             </div>
             <label class="label text-sm">
                 <input type="checkbox"
@@ -196,9 +199,10 @@
         </div>
         <div class="flex flex-col items-center gap-2">
             <div class="flex flex-col items-center gap-1">
-                <label class="label" for="willpower">Willpower</label>
-                <input type="number" id="willpower" class="input w-20" step="1"
-                       x-model="$store.character.attributes.wil"/>
+                <label class="label floating-label"><span>Willpower</span>
+                    <input type="number" id="willpower" class="input w-20"
+                           step="1"
+                           x-model="$store.character.attributes.wil"/></label>
             </div>
             <label class="label text-sm">
                 <input type="checkbox"
@@ -208,9 +212,10 @@
         </div>
         <div class="flex flex-col items-center gap-2">
             <div class="flex flex-col items-center gap-1">
-                <label class="label" for="charisma">Charisma</label>
-                <input type="number" id="charisma" class="input w-20" step="1"
-                       x-model="$store.character.attributes.cha"/>
+                <label class="label floating-label"><span>Charisma</span>
+                    <input type="number" id="charisma" class="input w-20"
+                           step="1"
+                           x-model="$store.character.attributes.cha"/></label>
             </div>
             <label class="label text-sm">
                 <input type="checkbox"
@@ -218,7 +223,7 @@
                        x-model="$store.character.disheartened"/> Disheartened
             </label>
         </div>
-    </div>
+    </fieldset>
     <nav x-data role="tablist"
          class="hidden md:flex md:tabs tabs-border w-full justify-center mb-2">
         <button role="tab" class="tab" @click="$store.activeTab = 'skills'"
@@ -325,29 +330,29 @@
                         x-for="(weapon, index) in $store.character.weapons"
                         :key="index">
                     <div class="grid grid-cols-12 grid-rows-3 md:grid-rows-2 lg:grid-rows-1 gap-2 items-center p-2 bg-base-200/30 rounded-lg">
-                        <label class="floating-label col-span-12 md:col-span-6 lg:col-span-5">
+                        <label class="label floating-label col-span-12 md:col-span-6 lg:col-span-5">
                             <span>Name</span>
-                            <input class="input input-sm w-full" type="text"
+                            <input class="input w-full" type="text"
                                    x-model="weapon.name"/>
                         </label>
-                        <label class="floating-label col-span-4 lg:col-span-1">
+                        <label class="label floating-label col-span-4 lg:col-span-1">
                             <span>Grip</span>
-                            <input class="input input-sm w-full" type="text"
+                            <input class="input w-full" type="text"
                                    x-model="weapon.grip"/>
                         </label>
-                        <label class="floating-label col-span-4 lg:col-span-1">
+                        <label class="label floating-label col-span-4 lg:col-span-1">
                             <span>Damage</span>
-                            <input class="input input-sm w-full" type="text"
+                            <input class="input w-full" type="text"
                                    x-model="weapon.damage"/>
                         </label>
-                        <label class="floating-label col-span-4 lg:col-span-1">
+                        <label class="label floating-label col-span-4 lg:col-span-1">
                             <span>Durability</span>
-                            <input class="input input-sm w-full" type="number"
+                            <input class="input w-full" type="number"
                                    x-model.number="weapon.durability"/>
                         </label>
-                        <label class="floating-label col-span-12 md:col-span-6 md:row-start-1 md:col-start-7 lg:row-start-auto lg:col-start-auto lg:col-span-4">
+                        <label class="label floating-label col-span-12 md:col-span-6 md:row-start-1 md:col-start-7 lg:row-start-auto lg:col-start-auto lg:col-span-4">
                             <span>Features</span>
-                            <input class="input input-sm w-full" type="text"
+                            <input class="input w-full" type="text"
                                    x-model="weapon.features"/>
                         </label>
                     </div>
@@ -357,12 +362,12 @@
         <fieldset class="fieldset  border-base-300 rounded-box  border p-4">
             <legend class="fieldset-legend">Damage Bonuses</legend>
             <div class="flex justify-center gap-4 items-center">
-                <label class="floating-label">
+                <label class="label floating-label">
                     <span>Strength</span>
                     <input type="text" class="input w-20"
                            x-model="$store.character.damageBonStr"/>
                 </label>
-                <label class="floating-label">
+                <label class="label floating-label">
                     <span>Agility</span>
                     <input type="text" class="input w-20"
                            x-model="$store.character.damageBonAgl"/>
@@ -398,14 +403,14 @@
             <div class="flex flex-col md:flex-row md:justify-around gap-2">
                 <div class="flex flex-col gap-3">
                     <span class="text-sm mb-2">Armor</span>
-                    <label class="floating-label">
+                    <label class="label floating-label">
                         <span>Name</span>
-                        <input type="text" class="input input-sm w-full"
+                        <input type="text" class="input w-full"
                                x-model="$store.character.armor.name"/>
                     </label>
-                    <label class="floating-label">
+                    <label class="label floating-label">
                         <span>Rating</span>
-                        <input type="number" class="input input-sm w-full"
+                        <input type="number" class="input w-full"
                                x-model.number="$store.character.armor.rating"/>
                     </label>
                     <span class="text-xs">Bane on</span>
@@ -430,14 +435,14 @@
                 </div>
                 <div class="flex flex-col gap-3">
                     <span class="text-sm mb-2">Helmet</span>
-                    <label class="floating-label">
+                    <label class="label floating-label">
                         <span>Name</span>
-                        <input type="text" class="input input-sm w-full"
+                        <input type="text" class="input w-full"
                                x-model="$store.character.helmet.name"/>
                     </label>
-                    <label class="floating-label">
+                    <label class="label floating-label">
                         <span>Rating</span>
-                        <input type="number" class="input input-sm w-full"
+                        <input type="number" class="input w-full"
                                x-model.number="$store.character.helmet.rating"/>
                     </label>
                     <span class="text-xs">Bane on</span>
@@ -460,13 +465,13 @@
         <fieldset class="fieldset border-base-300 rounded-box  border p-4">
             <legend class="fieldset-legend">Death Rolls</legend>
             <div class="flex md:justify-center gap-4 items-center">
-                <label class="floating-label grow md:grow-0">
+                <label class="label floating-label grow md:grow-0">
                     <span>Successes</span>
                     <input type="number" class="input input-success w-full"
                            step="1" min="0" max="3"
                            x-model.number="$store.character.deathRolls.successes"/>
                 </label>
-                <label class="floating-label grow md:grow-0">
+                <label class="label floating-label grow md:grow-0">
                     <span>Failures</span>
                     <input type="number" class="input input-warning w-full"
                            step="1" min="0" max="3"
