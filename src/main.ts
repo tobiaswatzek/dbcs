@@ -112,8 +112,23 @@ type Character = {
 
   // Equipment
   weapons: Weapon[];
-  armor: { rating: number; banes: [] };
-  helmet: { rating: number; banes: [] };
+  armor: {
+    name: string;
+    rating: number | null;
+    banes: {
+      sneaking: boolean;
+      evade: boolean;
+      acrobatics: boolean;
+    };
+  };
+  helmet: {
+    name: string;
+    rating: number | null;
+    banes: {
+      awareness: boolean;
+      rangedAttacks: boolean;
+    };
+  };
   inventory: string[];
   tinyItems: string[];
 
@@ -237,8 +252,23 @@ const initialCharacter: Character = {
       features: "",
     },
   ],
-  armor: { rating: 0, banes: [] },
-  helmet: { rating: 0, banes: [] },
+  armor: {
+    name: "",
+    rating: null,
+    banes: {
+      sneaking: false,
+      evade: false,
+      acrobatics: false,
+    },
+  },
+  helmet: {
+    name: "",
+    rating: null,
+    banes: {
+      awareness: false,
+      rangedAttacks: false,
+    },
+  },
   inventory: [],
   tinyItems: [],
 

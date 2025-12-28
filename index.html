@@ -360,12 +360,12 @@
                 <label class="floating-label">
                     <span>Strength</span>
                     <input type="text" class="input w-20"
-                           x-model="$store.character.attributes.damageBonStr"/>
+                           x-model="$store.character.damageBonStr"/>
                 </label>
                 <label class="floating-label">
                     <span>Agility</span>
                     <input type="text" class="input w-20"
-                           x-model="$store.character.attributes.damageBonAgl"/>
+                           x-model="$store.character.damageBonAgl"/>
                 </label>
             </div>
         </fieldset>
@@ -393,7 +393,70 @@
                 </template>
             </div>
         </fieldset>
+        <fieldset class="fieldset border-base-300 rounded-box  border p-4">
+            <legend class="fieldset-legend"></legend>
+            <div class="flex flex-col md:flex-row md:justify-around gap-2">
+                <div class="flex flex-col gap-3">
+                    <span class="text-sm mb-2">Armor</span>
+                    <label class="floating-label">
+                        <span>Name</span>
+                        <input type="text" class="input input-sm w-full"
+                               x-model="$store.character.armor.name"/>
+                    </label>
+                    <label class="floating-label">
+                        <span>Rating</span>
+                        <input type="number" class="input input-sm w-full"
+                               x-model.number="$store.character.armor.rating"/>
+                    </label>
+                    <span class="text-xs">Bane on</span>
+                    <div class="flex flex-row flex-wrap items-center gap-2">
+                        <label class="label">
+                            <input type="checkbox" class="checkbox checkbox-sm"
+                                   x-model="$store.character.armor.banes.acrobatics"/>
+                            Acrobatics
+                        </label>
+                        <label class="label">
+                            <input type="checkbox" class="checkbox checkbox-sm"
+                                   x-model="$store.character.armor.banes.evade"/>
+                            Evade
+                        </label>
+                        <label class="label">
+                            <input type="checkbox" class="checkbox checkbox-sm"
+                                   x-model="$store.character.armor.banes.sneaking"/>
+                            Sneaking
+                        </label>
+                    </div>
 
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span class="text-sm mb-2">Helmet</span>
+                    <label class="floating-label">
+                        <span>Name</span>
+                        <input type="text" class="input input-sm w-full"
+                               x-model="$store.character.helmet.name"/>
+                    </label>
+                    <label class="floating-label">
+                        <span>Rating</span>
+                        <input type="number" class="input input-sm w-full"
+                               x-model.number="$store.character.helmet.rating"/>
+                    </label>
+                    <span class="text-xs">Bane on</span>
+                    <div class="flex flex-row flex-wrap items-center gap-2">
+                        <label class="label">
+                            <input type="checkbox" class="checkbox checkbox-sm"
+                                   x-model="$store.character.helmet.banes.awareness"/>
+                            Awareness
+                        </label>
+                        <label class="label">
+                            <input type="checkbox" class="checkbox checkbox-sm"
+                                   x-model="$store.character.helmet.banes.rangedAttacks"/>
+                            Ranged Attacks
+                        </label>
+
+                    </div>
+                </div>
+            </div>
+        </fieldset>
 
     </div>
     <div x-show="$store.activeTab === 'inventory'">
