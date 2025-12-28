@@ -251,7 +251,7 @@
                     </div>
                     <input type="number"
                            :id="`value-${skillName}`"
-                           x-model="$store.character.skills[skillName].value"
+                           x-model.number="$store.character.skills[skillName].value"
                            class="input input-sm w-16 text-right" step="1"/>
                 </div>
             </template>
@@ -310,7 +310,7 @@
                     </div>
                     <input type="number"
                            :id="`value-skill-${index}`"
-                           x-model="skill.value"
+                           x-model.number="skill.value"
                            class="input input-sm w-16 text-right" step="1"/>
                 </div>
             </template>
@@ -318,30 +318,69 @@
 
     </div>
     <div x-show="$store.activeTab === 'combat'">
-
-        <h2 class="text-lg mb-4">Weapon Skills</h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-2 gap-4">
-            <template
-                    x-for="skillName in Object.keys($store.character.weaponSkills)"
-                    :key="skillName">
-                <div class="flex items-center justify-between p-2 bg-base-200/30 rounded-lg">
-                    <div class="flex items-center gap-2">
-                        <input :id="`mark-${skillName}`" type="checkbox"
-                               x-model="$store.character.weaponSkills[skillName].marked"
-                               class="checkbox checkbox-sm "/>
-                        <label :for="`mark-${skillName}`" class="sr-only"
-                               x-text="`Mark ${$store.character.weaponSkills[skillName].label}`"></label>
-                        <label :for="`value-${skillName}`"
-                               x-text="$store.character.weaponSkills[skillName].label"></label>
+        <fieldset class="fieldset  border-base-300 rounded-box  border p-4">
+            <legend class="fieldset-legend">Weapons at Hand</legend>
+            <div class="flex flex-col gap-2">
+                <template
+                        x-for="(weapon, index) in $store.character.weapons"
+                        :key="index">
+                    <div class="grid grid-cols-12 grid-rows-3 md:grid-rows-2 lg:grid-rows-1 gap-2 items-center p-2 bg-base-200/30 rounded-lg">
+                        <label class="floating-label col-span-12 md:col-span-6 lg:col-span-5">
+                            <span>Name</span>
+                            <input class="input input-sm w-full" type="text"
+                                   x-model="weapon.name"/>
+                        </label>
+                        <label class="floating-label col-span-4 lg:col-span-1">
+                            <span>Grip</span>
+                            <input class="input input-sm w-full" type="text"
+                                   x-model="weapon.grip"/>
+                        </label>
+                        <label class="floating-label col-span-4 lg:col-span-1">
+                            <span>Damage</span>
+                            <input class="input input-sm w-full" type="text"
+                                   x-model="weapon.damage"/>
+                        </label>
+                        <label class="floating-label col-span-4 lg:col-span-1">
+                            <span>Durability</span>
+                            <input class="input input-sm w-full" type="number"
+                                   x-model.number="weapon.durability"/>
+                        </label>
+                        <label class="floating-label col-span-12 md:col-span-6 md:row-start-1 md:col-start-7 lg:row-start-auto lg:col-start-auto lg:col-span-4">
+                            <span>Features</span>
+                            <input class="input input-sm w-full" type="text"
+                                   x-model="weapon.features"/>
+                        </label>
                     </div>
-                    <input type="number"
-                           :id="`value-${skillName}`"
-                           x-model="$store.character.weaponSkills[skillName].value"
-                           class="input input-sm w-16 text-right" step="1"/>
-                </div>
-            </template>
-        </div>
+                </template>
+            </div>
+        </fieldset>
+
+        <fieldset class="fieldset  border-base-300 rounded-box  border p-4">
+            <legend class="fieldset-legend">Weapon Skills</legend>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-2 gap-4">
+                <template
+                        x-for="skillName in Object.keys($store.character.weaponSkills)"
+                        :key="skillName">
+                    <div class="flex items-center justify-between p-2 bg-base-200/30 rounded-lg">
+                        <div class="flex items-center gap-2">
+                            <input :id="`mark-${skillName}`" type="checkbox"
+                                   x-model="$store.character.weaponSkills[skillName].marked"
+                                   class="checkbox checkbox-sm "/>
+                            <label :for="`mark-${skillName}`" class="sr-only"
+                                   x-text="`Mark ${$store.character.weaponSkills[skillName].label}`"></label>
+                            <label :for="`value-${skillName}`"
+                                   x-text="$store.character.weaponSkills[skillName].label"></label>
+                        </div>
+                        <input type="number"
+                               :id="`value-${skillName}`"
+                               x-model.number="$store.character.weaponSkills[skillName].value"
+                               class="input input-sm w-16 text-right" step="1"/>
+                    </div>
+                </template>
+            </div>
+        </fieldset>
+
+
     </div>
     <div x-show="$store.activeTab === 'inventory'">
         Inventory
@@ -359,6 +398,10 @@
 
         </fieldset>
     </div>
+
+    <pre>
+        <code x-text="JSON.stringify($store.character, null, 2)"></code>
+    </pre>
 </main>
 
 <script type="module" src="/src/main.ts"></script>

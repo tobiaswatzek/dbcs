@@ -9,12 +9,12 @@ declare global {
 
 window.Alpine = Alpine;
 
-Alpine.store("activeTab", "skills");
+Alpine.store("activeTab", "combat");
 
 type Skill = { label: string; value: number; marked: boolean };
 
 type Weapon = {
-  label: string;
+  name: string;
   grip: string;
   range: string;
   damage: string;
@@ -210,7 +210,32 @@ const initialCharacter: Character = {
   secondarySkills: [],
 
   // Equipment
-  weapons: [],
+  weapons: [
+    {
+      name: "",
+      grip: "",
+      range: "",
+      damage: "",
+      durability: null,
+      features: "",
+    },
+    {
+      name: "",
+      grip: "",
+      range: "",
+      damage: "",
+      durability: null,
+      features: "",
+    },
+    {
+      name: "",
+      grip: "",
+      range: "",
+      damage: "",
+      durability: null,
+      features: "",
+    },
+  ],
   armor: { rating: 0, banes: [] },
   helmet: { rating: 0, banes: [] },
   inventory: [],
