@@ -12,8 +12,8 @@
 <body class="flex flex-col h-full mb-22 md:mb-4">
 <header x-data
         class="py-4 px-2 sticky top-0 bg-base-100 z-50 border-b-2 border-b-base-200">
-    <div class="grid grid-cols-2 md:grid-cols-3 grid-rows-2 lg:grid-cols-6 lg:grid-rows-1 gap-2">
-        <div class="col-span-2 md:col-span-3 lg:col-span-4 flex flex-row lg:justify-normal gap-2 items-center">
+    <div class="grid grid-cols-2 md:grid-cols-3 grid-rows-3 md:grid-rows-2 lg:grid-cols-12 lg:grid-rows-1 gap-2">
+        <div class="col-span-2 md:col-span-3 lg:col-span-6 flex flex-row lg:justify-normal gap-2 items-center">
             <div>
                 <h1 class="text-xl"
                     x-text="$store.character.name || 'Character'"></h1>
@@ -27,48 +27,50 @@
                 Edit
             </button>
         </div>
-        <div class="flex flex-col items-center lg:items-end">
-            <div class="flex items-center gap-1">
-                <div class="text-sm">Willpower Points</div>
-                <button class="btn btn-xs"
-                        @click="$store.character.willpowerPoints = $store.character.maxWillpowerPoints">
-                    Reset
-                </button>
+        <div class="flex flex-col items-center gap-0 lg:items-end lg:col-span-2">
+            <div class="join">
+                <label class=" label floating-label"><span>WP
+                    Points</span>
+                    <input type="number" class="join-item input w-20"
+                           step="1"
+                           x-model.number="$store.character.willpowerPoints"/>
+                </label>
+                <label class="label floating-label"><span>Max</span>
+                    <input type="number" class="join-item input w-20"
+                           step="1"
+                           x-model.number="$store.character.maxWillpowerPoints"/>
+                </label>
             </div>
-            <div class="flex items-center gap-1">
-                <label class="sr-only" for="willpowerPoints">Current Willpower
-                    Points</label>
-                <input type="number" id="willpowerPoints" class="input w-20"
-                       step="1"
-                       x-model="$store.character.willpowerPoints"/>
-                <div>/</div>
-                <label class="sr-only" for="maxWillpowerPoints">Maximum
-                    Willpower
-                    Points</label>
-                <input type="number" id="maxWillpowerPoints" step="1"
-                       class="input input-ghost w-20"
-                       x-model="$store.character.maxWillpowerPoints"/>
-            </div>
+            <button class="btn btn-xs w-40"
+                    @click="$store.character.willpowerPoints = $store.character.maxWillpowerPoints">
+                ↩️ <span class="sr-only">Reset</span>
+            </button>
         </div>
-        <div class="md:col-start-3 lg:col-start-auto flex flex-col items-center lg:items-end">
-            <div class="flex items-center gap-1">
-                <div class="text-sm">Hit Points</div>
-                <button class="btn btn-xs"
-                        @click="$store.character.hitPoints = $store.character.maxHitPoints">
-                    Reset
-                </button>
+        <div class="flex flex-col items-center gap-0 lg:items-end lg:col-span-2">
+            <div class="join">
+                <label class="label floating-label"><span>Hit
+                    Points</span>
+                    <input type="number" class="join-item input w-20"
+                           step="1"
+                           x-model.number="$store.character.hitPoints"/>
+                </label>
+                <label class="label floating-label"><span>Max</span>
+                    <input type="number" class="join-item input w-20"
+                           step="1"
+                           x-model.number="$store.character.maxHitPoints"/>
+                </label>
             </div>
-            <div class="flex items-center gap-1">
-                <label class="sr-only" for="hitPoints">Current Hit
-                    Points</label>
-                <input type="number" id="hitPoints" class="input w-20" step="1"
-                       x-model="$store.character.hitPoints"/>
-                <div>/</div>
-                <label class="sr-only" for="maxHitPoints">Maximum Hit
-                    Points</label>
-                <input type="number" id="maxHitPoints" step="1"
-                       class="input input-ghost w-20"
-                       x-model="$store.character.maxHitPoints"/>
+            <button class="btn btn-xs w-40"
+                    @click="$store.character.hitPoints = $store.character.maxHitPoints">
+                ↩️ <span class="sr-only">Reset</span>
+            </button>
+        </div>
+        <div class="flex justify-center items-center md:items-start lg:justify-end lg:col-span-2">
+            <div>
+                <label class="label floating-label"><span>Movement</span>
+                    <input type="number" class="input w-20" step="1" min="0"
+                           x-model.number="$store.character.movement"/>
+                </label>
             </div>
         </div>
     </div>
@@ -143,7 +145,8 @@
     </button>
 </nav>
 <main x-data class="p-2">
-    <fieldset class="fieldset grid grid-cols-3 lg:grid-cols-6 gap-x-2 gap-y-8 border-base-300 rounded-box  border p-4">
+    <fieldset
+            class="fieldset grid grid-cols-3 lg:grid-cols-6 gap-x-2 gap-y-8 border-base-300 rounded-box  border p-4">
         <legend class="fieldset-legend">Attributes</legend>
         <div class="flex flex-col items-center gap-2">
             <div class="flex flex-col items-center gap-1">
@@ -482,6 +485,8 @@
     </div>
     <div x-show="$store.activeTab === 'inventory'">
         Inventory
+
+
     </div>
     <div x-show="$store.activeTab === 'basic'">
         <fieldset
