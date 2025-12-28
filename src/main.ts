@@ -23,13 +23,13 @@ type Weapon = {
 };
 
 type Character = {
-  name: "";
-  kin: "";
-  profession: "";
-  age: "";
-  weakness: "";
-  appearance: "";
-  memento: "";
+  name: string;
+  kin: string;
+  profession: string;
+  age: string;
+  weakness: string;
+  appearance: string;
+  memento: string;
 
   // Attributes
   attributes: {
@@ -42,31 +42,33 @@ type Character = {
   };
 
   // Derived stats
-  hitPoints: 0;
-  maxHitPoints: 0;
-  willpowerPoints: 0;
-  maxWillpowerPoints: 0;
-  movement: 0;
-  damageBonStr: 0;
-  damageBonAgl: 0;
-  encumbranceLimit: 0;
+  hitPoints: number;
+  maxHitPoints: number;
+  willpowerPoints: number;
+  maxWillpowerPoints: number;
+  movement: number;
+  damageBonStr: string;
+  damageBonAgl: string;
+  encumbranceLimit: number;
 
   // Conditions
-  exhausted: false;
-  sickly: false;
-  dazed: false;
-  angry: false;
-  scared: false;
-  disheartened: false;
+  exhausted: boolean;
+  sickly: boolean;
+  dazed: boolean;
+  angry: boolean;
+  scared: boolean;
+  disheartened: boolean;
 
   // Death rolls
-  deathSuccesses: 0;
-  deathFailures: 0;
+  deathRolls: {
+    successes: number;
+    failures: number;
+  };
 
   // Currency
-  copper: 0;
-  silver: 0;
-  gold: 0;
+  copper: number;
+  silver: number;
+  gold: number;
 
   // Skills
   skills: {
@@ -110,13 +112,13 @@ type Character = {
 
   // Equipment
   weapons: Weapon[];
-  armor: { rating: 0; banes: [] };
-  helmet: { rating: 0; banes: [] };
+  armor: { rating: number; banes: [] };
+  helmet: { rating: number; banes: [] };
   inventory: string[];
   tinyItems: string[];
 
   // Abilities
-  abilities: "";
+  abilities: string;
 };
 
 const initialCharacter: Character = {
@@ -144,8 +146,8 @@ const initialCharacter: Character = {
   willpowerPoints: 0,
   maxWillpowerPoints: 0,
   movement: 0,
-  damageBonStr: 0,
-  damageBonAgl: 0,
+  damageBonStr: "",
+  damageBonAgl: "",
   encumbranceLimit: 0,
 
   // Conditions
@@ -157,8 +159,7 @@ const initialCharacter: Character = {
   disheartened: false,
 
   // Death rolls
-  deathSuccesses: 0,
-  deathFailures: 0,
+  deathRolls: { successes: 0, failures: 0 },
 
   // Currency
   copper: 0,

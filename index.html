@@ -354,7 +354,21 @@
                 </template>
             </div>
         </fieldset>
-
+        <fieldset class="fieldset  border-base-300 rounded-box  border p-4">
+            <legend class="fieldset-legend">Damage Bonuses</legend>
+            <div class="flex justify-center gap-4 items-center">
+                <label class="floating-label">
+                    <span>Strength</span>
+                    <input type="text" class="input w-20"
+                           x-model="$store.character.attributes.damageBonStr"/>
+                </label>
+                <label class="floating-label">
+                    <span>Agility</span>
+                    <input type="text" class="input w-20"
+                           x-model="$store.character.attributes.damageBonAgl"/>
+                </label>
+            </div>
+        </fieldset>
         <fieldset class="fieldset  border-base-300 rounded-box  border p-4">
             <legend class="fieldset-legend">Weapon Skills</legend>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-2 gap-4">
