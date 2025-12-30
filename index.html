@@ -474,7 +474,69 @@
         </fieldset>
     </div>
     <div x-show="$store.activeTab === 'inventory'">
-        Inventory
+        <h2 class="text-lg mb-2">Inventory</h2>
+
+        <div class="mb-2">
+            <label class="label floating-label block w-full">
+                <span>Encumbrance Limit</span>
+                <input type="number" class="input w-full"
+                       step="1" min="0"
+                       x-model.number="$store.character.encumbranceLimit"/>
+            </label>
+            <progress class="progress"
+                      :class="$store.character.inventory.length > $store.character.encumbranceLimit ? 'progress-error' : ''"
+                      :value="$store.character.inventory.length"
+                      :max="$store.character.encumbranceLimit"></progress>
+        </div>
+        <button class="btn"
+                onclick="document.querySelector('#addItem').showModal()">Add
+            item
+        </button>
+        <dialog x-data="{name: '', description: ''}" id="addItem" class="modal">
+            <div class="modal-box">
+                <h1 class="text-lg font-bold">Add Item</h1>
+
+                <form method="dialog"
+                      @submit="$store.character.inventory.push({name: name, description: description}); name = ''; description = '';">
+                    <label for="itemName" class="label">Name</label>
+                    <input x-model="name" name="itemName" id="itemName"
+                           type="text" required
+                           class="input validator w-full"/>
+                    <label for="itemDescription"
+                           class="label">Description</label>
+                    <textarea x-model="description" name="itemDescription"
+                              id="itemDescription"
+                              class="textarea w-full"></textarea>
+                    <div class="modal-action">
+                        <button class="btn" type="reset"
+                                @click="document.querySelector('#addItem').close()"
+                        >
+                            Cancel
+                        </button>
+                        <button class="btn" type="submit">Add Item</button>
+                    </div>
+
+                </form>
+            </div>
+        </dialog>
+        <ul class="list">
+            <template x-for="(item, index) in $store.character.inventory"
+                      :key="index">
+                <li class="list-row">
+                    <div class="text-lg opacity-30 tabular-nums"
+                         x-text="index + 1"></div>
+                    <div>
+                        <div x-text="item.name"></div>
+                        <div class="text-xs" x-text="item.description"></div>
+                    </div>
+
+                    <button class="btn btn-square text-lg"
+                            @click="$store.character.inventory.splice(index, 1)">
+                        <span class="icon-[tabler--trash]"></span>
+                    </button>
+                </li>
+            </template>
+        </ul>
 
 
     </div>

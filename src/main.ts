@@ -9,7 +9,7 @@ declare global {
 
 window.Alpine = Alpine;
 
-Alpine.store("activeTab", "combat");
+Alpine.store("activeTab", "inventory");
 
 type Skill = { label: string; value: number; marked: boolean };
 
@@ -129,7 +129,7 @@ type Character = {
       rangedAttacks: boolean;
     };
   };
-  inventory: string[];
+  inventory: { name: string; description: string }[];
   tinyItems: string[];
 
   // Abilities
@@ -269,7 +269,10 @@ const initialCharacter: Character = {
       rangedAttacks: false,
     },
   },
-  inventory: [],
+  inventory: [
+    { name: "4 Torches", description: "" },
+    { name: "Staff", description: "A nicely made staff" },
+  ],
   tinyItems: [],
 
   // Abilities
