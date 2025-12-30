@@ -9,224 +9,129 @@
     <link rel="stylesheet" href="/src/style.css">
 </head>
 
-<body class="flex flex-col h-full mb-22 md:mb-4">
-<header x-data
-        class="py-4 px-2 sticky top-0 bg-base-100 z-50 border-b-2 border-b-base-200">
-    <div class="grid grid-cols-2 md:grid-cols-3 grid-rows-3 md:grid-rows-2 lg:grid-cols-12 lg:grid-rows-1 gap-2">
-        <div class="col-span-2 md:col-span-3 lg:col-span-6 flex flex-row lg:justify-normal gap-2 items-center">
-            <div>
-                <h1 class="text-xl"
-                    x-text="$store.character.name || 'Character'"></h1>
-                <div x-show="$store.character.profession || $store.character.kin">
-                    <span x-text="$store.character.profession"></span> | <span
-                        x-text="$store.character.kin"></span>
-                </div>
-            </div>
-            <button class="btn btn-sm"
-                    onclick="document.querySelector('#characterBasics').showModal()">
-                Edit
-            </button>
-        </div>
-        <div class="flex flex-col items-center gap-0 lg:items-end lg:col-span-2">
-            <div class="join">
-                <label class=" label floating-label"><span>WP
-                    Points</span>
-                    <input type="number" class="join-item input w-20"
-                           step="1"
-                           x-model.number="$store.character.willpowerPoints"/>
-                </label>
-                <label class="label floating-label"><span>Max</span>
-                    <input type="number" class="join-item input w-20"
-                           step="1"
-                           x-model.number="$store.character.maxWillpowerPoints"/>
-                </label>
-            </div>
-            <button class="btn btn-xs w-40"
-                    @click="$store.character.willpowerPoints = $store.character.maxWillpowerPoints">
-                ↩️ <span class="sr-only">Reset</span>
-            </button>
-        </div>
-        <div class="flex flex-col items-center gap-0 lg:items-end lg:col-span-2">
-            <div class="join">
-                <label class="label floating-label"><span>Hit
-                    Points</span>
-                    <input type="number" class="join-item input w-20"
-                           step="1"
-                           x-model.number="$store.character.hitPoints"/>
-                </label>
-                <label class="label floating-label"><span>Max</span>
-                    <input type="number" class="join-item input w-20"
-                           step="1"
-                           x-model.number="$store.character.maxHitPoints"/>
-                </label>
-            </div>
-            <button class="btn btn-xs w-40"
-                    @click="$store.character.hitPoints = $store.character.maxHitPoints">
-                ↩️ <span class="sr-only">Reset</span>
-            </button>
-        </div>
-        <div class="flex justify-center items-center md:items-start lg:justify-end lg:col-span-2">
-            <div>
-                <label class="label floating-label"><span>Movement</span>
-                    <input type="number" class="input w-20" step="1" min="0"
-                           x-model.number="$store.character.movement"/>
-                </label>
-            </div>
+<body x-data class="flex flex-col h-full mb-22 md:mb-4">
+<div class="navbar bg-base-100 shadow-sm">
+    <div class="flex-1">
+        <h1 class="text-xl"
+            x-text="$store.character.name || 'Character'"></h1>
+        <div x-show="$store.character.profession || $store.character.kin">
+             <span
+                     x-text="$store.character.kin"></span> <span
+                x-text="$store.character.profession"></span>
         </div>
     </div>
-    <dialog id="characterBasics" class="modal">
-        <div class="modal-box">
-            <form method="dialog">
-                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                    <span class="sr-only">Close</span><span
-                        aria-hidden="true">✕</span>
-                </button>
-            </form>
-            <h1 class="text-lg font-bold">Edit Basics</h1>
-            <div>
-                <label for="characterName" class="label">Name</label>
-                <input x-model="$store.character.name" name="characterName"
-                       id="characterName" type="text"
-                       class="input w-full"/>
-            </div>
-            <div>
-                <label class="label" for="profession">Profession</label>
-                <input type="text" list="professions" class="input w-full"
-                       id="profession" name="profession"
-                       x-model="$store.character.profession"
-                />
-                <datalist id="professions">
-                    <option value="Artisan">
-                    <option value="Bard">
-                    <option value="Fighter">
-                    <option value="Hunter">
-                    <option value="Knight">
-                    <option value="Mage">
-                    <option value="Mariner">
-                    <option value="Merchant">
-                    <option value="Scholar">
-                    <option value="Thief">
-                </datalist>
-            </div>
-            <div>
-                <label class="label" for="kin">Kin</label>
-                <input type="text" list="kins" class="input w-full" id="kin"
-                       name="kin" x-model="$store.character.kin"
-                />
-                <datalist id="kins">
-                    <option value="Dwarf">
-                    <option value="Elf">
-                    <option value="Human">
-                    <option value="Halfling">
-                    <option value="Mallard">
-                    <option value="Wolfkin">
-                </datalist>
-            </div>
+    <div class="flex-none">
+        <button class="btn btn-square btn-ghost text-xl"
+                onclick="document.querySelector('#characterBasics').showModal()">
+            <span aria-hidden="true" class="icon-[tabler--settings]"></span>
+            <span class="sr-only">Configure Basics</span>
+        </button>
+    </div>
+</div>
+<dialog id="characterBasics" class="modal">
+    <div class="modal-box">
+        <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                <span class="sr-only">Close</span><span
+                    aria-hidden="true">✕</span>
+            </button>
+        </form>
+        <h1 class="text-lg font-bold">Edit Basics</h1>
+        <div>
+            <label for="characterName" class="label">Name</label>
+            <input x-model="$store.character.name" name="characterName"
+                   id="characterName" type="text"
+                   class="input w-full"/>
         </div>
-    </dialog>
+        <div>
+            <label class="label" for="profession">Profession</label>
+            <input type="text" list="professions" class="input w-full"
+                   id="profession" name="profession"
+                   x-model="$store.character.profession"
+            />
+            <datalist id="professions">
+                <option value="Artisan">
+                <option value="Bard">
+                <option value="Fighter">
+                <option value="Hunter">
+                <option value="Knight">
+                <option value="Mage">
+                <option value="Mariner">
+                <option value="Merchant">
+                <option value="Scholar">
+                <option value="Thief">
+            </datalist>
+        </div>
+        <div>
+            <label class="label" for="kin">Kin</label>
+            <input type="text" list="kins" class="input w-full" id="kin"
+                   name="kin" x-model="$store.character.kin"
+            />
+            <datalist id="kins">
+                <option value="Dwarf">
+                <option value="Elf">
+                <option value="Human">
+                <option value="Halfling">
+                <option value="Mallard">
+                <option value="Wolfkin">
+            </datalist>
+        </div>
+    </div>
+</dialog>
+<header x-data
+        class="py-4 px-2 border-b-2 border-b-base-200">
+
+    <div class="flex flex-col items-center gap-0 lg:items-end lg:col-span-2">
+        <div class="join">
+            <label class=" label floating-label"><span>WP
+                    Points</span>
+                <input type="number" class="join-item input w-20"
+                       step="1"
+                       x-model.number="$store.character.willpowerPoints"/>
+            </label>
+            <label class="label floating-label"><span>Max</span>
+                <input type="number" class="join-item input w-20"
+                       step="1"
+                       x-model.number="$store.character.maxWillpowerPoints"/>
+            </label>
+        </div>
+        <button class="btn btn-xs w-40"
+                @click="$store.character.willpowerPoints = $store.character.maxWillpowerPoints">
+            ↩️ <span class="sr-only">Reset</span>
+        </button>
+    </div>
+    <div class="flex flex-col items-center gap-0 lg:items-end lg:col-span-2">
+        <div class="join">
+            <label class="label floating-label"><span>Hit
+                    Points</span>
+                <input type="number" class="join-item input w-20"
+                       step="1"
+                       x-model.number="$store.character.hitPoints"/>
+            </label>
+            <label class="label floating-label"><span>Max</span>
+                <input type="number" class="join-item input w-20"
+                       step="1"
+                       x-model.number="$store.character.maxHitPoints"/>
+            </label>
+        </div>
+        <button class="btn btn-xs w-40"
+                @click="$store.character.hitPoints = $store.character.maxHitPoints">
+            ↩️ <span class="sr-only">Reset</span>
+        </button>
+    </div>
+    <div class="flex justify-center items-center md:items-start lg:justify-end lg:col-span-2">
+        <div>
+            <label class="label floating-label"><span>Movement</span>
+                <input type="number" class="input w-20" step="1" min="0"
+                       x-model.number="$store.character.movement"/>
+            </label>
+        </div>
+    </div>
+
 </header>
 
-<nav x-data class="dock md:hidden">
-    <button @click="$store.activeTab = 'skills'"
-            :class="$store.activeTab === 'skills' && 'dock-active'"><span
-            class="dock-label">Skills</span>
-    </button>
-    <button @click="$store.activeTab = 'combat'"
-            :class="$store.activeTab === 'combat' && 'dock-active'"><span
-            class="dock-label">Combat</span>
-    </button>
-    <button @click="$store.activeTab = 'inventory'"
-            :class="$store.activeTab === 'inventory' && 'dock-active'"><span
-            class="dock-label">Inventory</span>
-    </button>
-    <button @click="$store.activeTab = 'basic'"
-            :class="$store.activeTab === 'basic' && 'dock-active'"><span
-            class="dock-label">Basic</span>
-    </button>
-</nav>
 <main x-data class="p-2">
-    <fieldset
-            class="fieldset grid grid-cols-3 lg:grid-cols-6 gap-x-2 gap-y-8 border-base-300 rounded-box  border p-4">
-        <legend class="fieldset-legend">Attributes</legend>
-        <div class="flex flex-col items-center gap-2">
-            <div class="flex flex-col items-center gap-1">
-                <label class="label floating-label"><span>Strength</span>
-                    <input type="number" id="strength" class="input w-20"
-                           step="1"
-                           x-model="$store.character.attributes.str"/></label>
-            </div>
-            <label class="label text-sm">
-                <input type="checkbox" x-model="$store.character.exhausted"
-                       class="checkbox checkbox-sm checked:checkbox-warning"/>
-                Exhausted
-            </label>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-            <div class="flex flex-col items-center gap-1">
-                <label class="label floating-label"><span>Constitution</span>
-                    <input type="number" id="constitution" class="input w-20"
-                           step="1"
-                           x-model="$store.character.attributes.con"/></label>
-            </div>
-            <label class="label text-sm">
-                <input type="checkbox"
-                       class="checkbox checkbox-sm checked:checkbox-warning"
-                       x-model="$store.character.sickly"/> Sickly
-            </label>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-            <div class="flex flex-col items-center gap-1">
-                <label class="label floating-label"><span>Agility</span>
-                    <input type="number" id="agility" class="input w-20"
-                           step="1"
-                           x-model="$store.character.attributes.agl"/></label>
-            </div>
-            <label class="label text-sm">
-                <input type="checkbox"
-                       class="checkbox checkbox-sm checked:checkbox-warning"
-                       x-model="$store.character.dazed"/> Dazed
-            </label>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-            <div class="flex flex-col items-center gap-1">
-                <label class="label floating-label"><span>Intelligence</span>
-                    <input type="number" id="intelligence" class="input w-20"
-                           step="1"
-                           x-model="$store.character.attributes.int"/></label>
-            </div>
-            <label class="label text-sm">
-                <input type="checkbox"
-                       class="checkbox checkbox-sm checked:checkbox-warning"
-                       x-model="$store.character.angry"/> Angry
-            </label>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-            <div class="flex flex-col items-center gap-1">
-                <label class="label floating-label"><span>Willpower</span>
-                    <input type="number" id="willpower" class="input w-20"
-                           step="1"
-                           x-model="$store.character.attributes.wil"/></label>
-            </div>
-            <label class="label text-sm">
-                <input type="checkbox"
-                       class="checkbox checkbox-sm checked:checkbox-warning"
-                       x-model="$store.character.scared"/> Scared
-            </label>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-            <div class="flex flex-col items-center gap-1">
-                <label class="label floating-label"><span>Charisma</span>
-                    <input type="number" id="charisma" class="input w-20"
-                           step="1"
-                           x-model="$store.character.attributes.cha"/></label>
-            </div>
-            <label class="label text-sm">
-                <input type="checkbox"
-                       class="checkbox checkbox-sm checked:checkbox-warning"
-                       x-model="$store.character.disheartened"/> Disheartened
-            </label>
-        </div>
-    </fieldset>
+
     <nav x-data role="tablist"
          class="hidden md:flex md:tabs tabs-border w-full justify-center mb-2">
         <button role="tab" class="tab" @click="$store.activeTab = 'skills'"
@@ -244,6 +149,91 @@
         </button>
     </nav>
     <div x-show="$store.activeTab === 'skills'">
+        <fieldset
+                class="fieldset mb-4 grid grid-cols-3 lg:grid-cols-6 gap-x-2 gap-y-8 border-base-300 rounded-box  border p-4">
+            <legend class="fieldset-legend">Attributes</legend>
+            <div class="flex flex-col items-center gap-2">
+                <div class="flex flex-col items-center gap-1">
+                    <label class="label floating-label"><span>Strength</span>
+                        <input type="number" id="strength" class="input w-20"
+                               step="1"
+                               x-model="$store.character.attributes.str"/></label>
+                </div>
+                <label class="label text-sm">
+                    <input type="checkbox" x-model="$store.character.exhausted"
+                           class="checkbox checkbox-sm checked:checkbox-warning"/>
+                    Exhausted
+                </label>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class="flex flex-col items-center gap-1">
+                    <label class="label floating-label"><span>Constitution</span>
+                        <input type="number" id="constitution"
+                               class="input w-20"
+                               step="1"
+                               x-model="$store.character.attributes.con"/></label>
+                </div>
+                <label class="label text-sm">
+                    <input type="checkbox"
+                           class="checkbox checkbox-sm checked:checkbox-warning"
+                           x-model="$store.character.sickly"/> Sickly
+                </label>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class="flex flex-col items-center gap-1">
+                    <label class="label floating-label"><span>Agility</span>
+                        <input type="number" id="agility" class="input w-20"
+                               step="1"
+                               x-model="$store.character.attributes.agl"/></label>
+                </div>
+                <label class="label text-sm">
+                    <input type="checkbox"
+                           class="checkbox checkbox-sm checked:checkbox-warning"
+                           x-model="$store.character.dazed"/> Dazed
+                </label>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class="flex flex-col items-center gap-1">
+                    <label class="label floating-label"><span>Intelligence</span>
+                        <input type="number" id="intelligence"
+                               class="input w-20"
+                               step="1"
+                               x-model="$store.character.attributes.int"/></label>
+                </div>
+                <label class="label text-sm">
+                    <input type="checkbox"
+                           class="checkbox checkbox-sm checked:checkbox-warning"
+                           x-model="$store.character.angry"/> Angry
+                </label>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class="flex flex-col items-center gap-1">
+                    <label class="label floating-label"><span>Willpower</span>
+                        <input type="number" id="willpower" class="input w-20"
+                               step="1"
+                               x-model="$store.character.attributes.wil"/></label>
+                </div>
+                <label class="label text-sm">
+                    <input type="checkbox"
+                           class="checkbox checkbox-sm checked:checkbox-warning"
+                           x-model="$store.character.scared"/> Scared
+                </label>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <div class="flex flex-col items-center gap-1">
+                    <label class="label floating-label"><span>Charisma</span>
+                        <input type="number" id="charisma" class="input w-20"
+                               step="1"
+                               x-model="$store.character.attributes.cha"/></label>
+                </div>
+                <label class="label text-sm">
+                    <input type="checkbox"
+                           class="checkbox checkbox-sm checked:checkbox-warning"
+                           x-model="$store.character.disheartened"/>
+                    Disheartened
+                </label>
+            </div>
+        </fieldset>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-2 gap-4">
             <template x-for="skillName in Object.keys($store.character.skills)"
                       :key="skillName">
@@ -502,10 +492,34 @@
         </fieldset>
     </div>
 
-    <pre>
-        <code x-text="JSON.stringify($store.character, null, 2)"></code>
-    </pre>
+    <!--    <pre>-->
+    <!--        <code x-text="JSON.stringify($store.character, null, 2)"></code>-->
+    <!--    </pre>-->
 </main>
+
+<nav x-data class="dock z-50 md:hidden">
+    <button @click="$store.activeTab = 'skills'"
+            :class="$store.activeTab === 'skills' && 'dock-active'">
+        <span aria-hidden="true" class="icon-[game-icons--skills]"></span>
+        <span class="dock-label">Skills</span>
+    </button>
+    <button @click="$store.activeTab = 'combat'"
+            :class="$store.activeTab === 'combat' && 'dock-active'">
+        <span aria-hidden="true"
+              class="icon-[game-icons--swords-emblem]"></span>
+        <span class="dock-label">Combat</span>
+    </button>
+    <button @click="$store.activeTab = 'inventory'"
+            :class="$store.activeTab === 'inventory' && 'dock-active'">
+        <span aria-hidden="true" class="icon-[game-icons--swap-bag]"></span>
+        <span class="dock-label">Inventory</span>
+    </button>
+    <button @click="$store.activeTab = 'basic'"
+            :class="$store.activeTab === 'basic' && 'dock-active'">
+        <span aria-hidden="true" class="icon-[game-icons--white-book]"></span>
+        <span class="dock-label">Basic</span>
+    </button>
+</nav>
 
 <script type="module" src="/src/main.ts"></script>
 </body>

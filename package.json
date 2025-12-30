@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@iconify-json/game-icons": "1.2.3",
+    "@iconify-json/tabler": "1.2.25",
+    "@iconify/tailwind4": "1.2.0",
     "alpinejs": "3.15.3"
   },
   "devDependencies": {
