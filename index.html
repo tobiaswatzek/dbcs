@@ -477,30 +477,42 @@
         <h2 class="text-lg mb-2">Inventory</h2>
 
         <div class="mb-2">
-            <label class="label floating-label block w-full">
+            <label class="label floating-label block w-full mb-2">
                 <span>Encumbrance Limit</span>
                 <input type="number" class="input w-full"
                        step="1" min="0"
                        x-model.number="$store.character.encumbranceLimit"/>
             </label>
             <progress class="progress"
-                      :class="$store.character.inventory.length > $store.character.encumbranceLimit ? 'progress-error' : ''"
-                      :value="$store.character.inventory.length"
+                      x-show="$store.character.encumbranceLimit > 0"
+                      :class="$store.character.inventory.reduce((prev, cur) => prev + cur.weight, 0) > $store.character.encumbranceLimit ? 'progress-error' : ''"
+                      :value="$store.character.inventory.reduce((prev, cur) => prev + cur.weight, 0)"
                       :max="$store.character.encumbranceLimit"></progress>
+            <div class="text-xs text-center"
+                 x-show="$store.character.encumbranceLimit > 0">
+                <span x-text="$store.character.inventory.reduce((prev, cur) => prev + cur.weight, 0)"></span>/<span
+                    x-text="$store.character.encumbranceLimit"></span>
+            </div>
         </div>
         <button class="btn"
                 onclick="document.querySelector('#addItem').showModal()">Add
             item
         </button>
-        <dialog x-data="{name: '', description: ''}" id="addItem" class="modal">
+        <dialog x-data="{name: '', description: '', weight: 1}" id="addItem"
+                class="modal">
             <div class="modal-box">
                 <h1 class="text-lg font-bold">Add Item</h1>
 
                 <form method="dialog"
-                      @submit="$store.character.inventory.push({name: name, description: description}); name = ''; description = '';">
+                      @submit="$store.character.inventory.push({name: name, description: description}); name = ''; description = ''; weight = 1;">
                     <label for="itemName" class="label">Name</label>
                     <input x-model="name" name="itemName" id="itemName"
                            type="text" required
+                           class="input validator w-full"/>
+                    <label for="itemWeight" class="label">Weight</label>
+                    <input x-model.number="weight" name="itemWeight"
+                           id="itemWeight"
+                           type="text" required min="1" step="1"
                            class="input validator w-full"/>
                     <label for="itemDescription"
                            class="label">Description</label>
@@ -527,9 +539,13 @@
                          x-text="index + 1"></div>
                     <div>
                         <div x-text="item.name"></div>
-                        <div class="text-xs" x-text="item.description"></div>
+                        <div class="text-xs">Weight <span
+                                x-text="item.weight"></span></div>
                     </div>
-
+                    <template x-if="item.description !== ''">
+                        <div class="list-col-wrap text-xs"
+                             x-text="item.description"></div>
+                    </template>
                     <button class="btn btn-square text-lg"
                             @click="$store.character.inventory.splice(index, 1)">
                         <span class="icon-[tabler--trash]"></span>

@@ -129,7 +129,7 @@ type Character = {
       rangedAttacks: boolean;
     };
   };
-  inventory: { name: string; description: string }[];
+  inventory: { name: string; description: string; weight: number }[];
   tinyItems: string[];
 
   // Abilities
@@ -269,10 +269,7 @@ const initialCharacter: Character = {
       rangedAttacks: false,
     },
   },
-  inventory: [
-    { name: "4 Torches", description: "" },
-    { name: "Staff", description: "A nicely made staff" },
-  ],
+  inventory: [],
   tinyItems: [],
 
   // Abilities
