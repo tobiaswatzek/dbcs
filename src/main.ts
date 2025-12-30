@@ -130,7 +130,7 @@ type Character = {
     };
   };
   inventory: { name: string; description: string; weight: number }[];
-  tinyItems: string[];
+  tinyItems: { name: string; description: string }[];
 
   // Abilities
   abilities: string;
