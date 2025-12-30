@@ -588,7 +588,7 @@
                 </form>
             </div>
         </dialog>
-        <ul class="list">
+        <ul class="list mb-4">
             <template x-for="(item, index) in $store.character.tinyItems"
                       :key="index">
                 <li class="list-row">
@@ -609,6 +609,10 @@
             </template>
         </ul>
 
+        <h3 class="text-lg mb-2">Memento</h3>
+        <label class=" label floating-label block"><span>Memento</span>
+            <textarea class="textarea w-full"
+                      x-model="$store.character.memento"></textarea></label>
     </div>
     <div x-show="$store.activeTab === 'basic'">
         <fieldset
