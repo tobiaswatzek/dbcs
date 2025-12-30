@@ -476,7 +476,33 @@
     <div x-show="$store.activeTab === 'inventory'">
         <h2 class="text-lg mb-2">Inventory</h2>
 
-        <div class="mb-2">
+        <fieldset
+                class="fieldset border-base-300 rounded-box flex justify-around border p-4">
+            <legend class="fieldset-legend">Coins</legend>
+            <label class="label floating-label">
+                <span>Gold</span>
+                <input type="number" class="input w-20"
+                       step="1" min="0"
+                       x-model.number="$store.character.coins.gold"/>
+            </label>
+            <label class="label floating-label">
+                <span>Silver</span>
+                <input type="number" class="input w-20"
+                       step="1" min="0"
+                       x-model.number="$store.character.coins.silver"/>
+            </label>
+            <label class="label floating-label">
+                <span>Copper</span>
+                <input type="number" class="input w-20"
+                       step="1" min="0"
+                       x-model.number="$store.character.coins.copper"/>
+            </label>
+
+
+        </fieldset>
+
+        <fieldset class="fieldset border-base-300 rounded-box border p-4">
+            <legend class="fieldset-legend">Items</legend>
             <label class="label floating-label block w-full mb-2">
                 <span>Encumbrance Limit</span>
                 <input type="number" class="input w-full"
@@ -493,126 +519,133 @@
                 <span x-text="$store.character.inventory.reduce((prev, cur) => prev + cur.weight, 0)"></span>/<span
                     x-text="$store.character.encumbranceLimit"></span>
             </div>
+
+            <button class="btn"
+                    onclick="document.querySelector('#addItem').showModal()">Add
+                item
+            </button>
+            <dialog x-data="{name: '', description: '', weight: 1}" id="addItem"
+                    class="modal">
+                <div class="modal-box">
+                    <h1 class="text-lg font-bold">Add Item</h1>
+
+                    <form method="dialog"
+                          @submit="$store.character.inventory.push({name: name, description: description, weight: weight}); name = ''; description = ''; weight = 1;">
+                        <label for="itemName" class="label">Name</label>
+                        <input x-model="name" name="itemName" id="itemName"
+                               type="text" required
+                               class="input validator w-full"/>
+                        <label for="itemWeight" class="label">Weight</label>
+                        <input x-model.number="weight" name="itemWeight"
+                               id="itemWeight"
+                               type="text" required min="1" step="1"
+                               class="input validator w-full"/>
+                        <label for="itemDescription"
+                               class="label">Description</label>
+                        <textarea x-model="description" name="itemDescription"
+                                  id="itemDescription"
+                                  class="textarea w-full"></textarea>
+                        <div class="modal-action">
+                            <button class="btn" type="reset"
+                                    @click="document.querySelector('#addItem').close()"
+                            >
+                                Cancel
+                            </button>
+                            <button class="btn" type="submit">Add Item</button>
+                        </div>
+
+                    </form>
+                </div>
+            </dialog>
+            <ul class="list mb-4">
+                <template x-for="(item, index) in $store.character.inventory"
+                          :key="index">
+                    <li class="list-row">
+                        <div class="text-lg opacity-30 tabular-nums"
+                             x-text="index + 1"></div>
+                        <div>
+                            <div x-text="item.name"></div>
+                            <div class="text-xs">Weight <span
+                                    x-text="item.weight"></span></div>
+                        </div>
+                        <template x-if="item.description !== ''">
+                            <div class="list-col-wrap text-xs"
+                                 x-text="item.description"></div>
+                        </template>
+                        <button class="btn btn-square text-lg"
+                                @click="$store.character.inventory.splice(index, 1)">
+                            <span class="icon-[tabler--trash]"></span>
+                        </button>
+                    </li>
+                </template>
+            </ul>
+        </fieldset>
+
+        <fieldset class="fieldset border-base-300 rounded-box  border p-4">
+            <legend class="fieldset-legend">Tiny Items</legend>
+            <button class="btn"
+                    onclick="document.querySelector('#addTinyItem').showModal()">
+                Add
+                tiny item
+            </button>
+            <dialog x-data="{name: '', description: ''}" id="addTinyItem"
+                    class="modal">
+                <div class="modal-box">
+                    <h1 class="text-lg font-bold">Add Tiny Item</h1>
+
+                    <form method="dialog"
+                          @submit="$store.character.tinyItems.push({name: name, description: description}); name = ''; description = '';">
+                        <label for="tinyItemName" class="label">Name</label>
+                        <input x-model="name" name="tinyItemName"
+                               id="tinyItemName"
+                               type="text" required
+                               class="input validator w-full"/>
+                        <label for="tinyItemDescription"
+                               class="label">Description</label>
+                        <textarea x-model="description"
+                                  name="tinyItemDescription"
+                                  id="tinyItemDescription"
+                                  class="textarea w-full"></textarea>
+                        <div class="modal-action">
+                            <button class="btn" type="reset"
+                                    @click="document.querySelector('#addTinyItem').close()"
+                            >
+                                Cancel
+                            </button>
+                            <button class="btn" type="submit">Add Tiny Item
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </dialog>
+            <ul class="list mb-4">
+                <template x-for="(item, index) in $store.character.tinyItems"
+                          :key="index">
+                    <li class="list-row">
+                        <div class="text-lg opacity-30 tabular-nums"
+                             x-text="index + 1"></div>
+                        <div>
+                            <div x-text="item.name"></div>
+                        </div>
+                        <template x-if="item.description !== ''">
+                            <div class="list-col-wrap text-xs"
+                                 x-text="item.description"></div>
+                        </template>
+                        <button class="btn btn-square text-lg"
+                                @click="$store.character.tinyItems.splice(index, 1)">
+                            <span class="icon-[tabler--trash]"></span>
+                        </button>
+                    </li>
+                </template>
+            </ul>
+        </fieldset>
+
+        <div class="my-4">
+            <label class=" label floating-label block"><span>Memento</span>
+                <textarea class="textarea w-full"
+                          x-model="$store.character.memento"></textarea></label>
         </div>
-        <button class="btn"
-                onclick="document.querySelector('#addItem').showModal()">Add
-            item
-        </button>
-        <dialog x-data="{name: '', description: '', weight: 1}" id="addItem"
-                class="modal">
-            <div class="modal-box">
-                <h1 class="text-lg font-bold">Add Item</h1>
-
-                <form method="dialog"
-                      @submit="$store.character.inventory.push({name: name, description: description, weight: weight}); name = ''; description = ''; weight = 1;">
-                    <label for="itemName" class="label">Name</label>
-                    <input x-model="name" name="itemName" id="itemName"
-                           type="text" required
-                           class="input validator w-full"/>
-                    <label for="itemWeight" class="label">Weight</label>
-                    <input x-model.number="weight" name="itemWeight"
-                           id="itemWeight"
-                           type="text" required min="1" step="1"
-                           class="input validator w-full"/>
-                    <label for="itemDescription"
-                           class="label">Description</label>
-                    <textarea x-model="description" name="itemDescription"
-                              id="itemDescription"
-                              class="textarea w-full"></textarea>
-                    <div class="modal-action">
-                        <button class="btn" type="reset"
-                                @click="document.querySelector('#addItem').close()"
-                        >
-                            Cancel
-                        </button>
-                        <button class="btn" type="submit">Add Item</button>
-                    </div>
-
-                </form>
-            </div>
-        </dialog>
-        <ul class="list mb-4">
-            <template x-for="(item, index) in $store.character.inventory"
-                      :key="index">
-                <li class="list-row">
-                    <div class="text-lg opacity-30 tabular-nums"
-                         x-text="index + 1"></div>
-                    <div>
-                        <div x-text="item.name"></div>
-                        <div class="text-xs">Weight <span
-                                x-text="item.weight"></span></div>
-                    </div>
-                    <template x-if="item.description !== ''">
-                        <div class="list-col-wrap text-xs"
-                             x-text="item.description"></div>
-                    </template>
-                    <button class="btn btn-square text-lg"
-                            @click="$store.character.inventory.splice(index, 1)">
-                        <span class="icon-[tabler--trash]"></span>
-                    </button>
-                </li>
-            </template>
-        </ul>
-
-
-        <h3 class="text-lg mb-2">Tiny Items</h3>
-        <button class="btn"
-                onclick="document.querySelector('#addTinyItem').showModal()">Add
-            tiny item
-        </button>
-        <dialog x-data="{name: '', description: ''}" id="addTinyItem"
-                class="modal">
-            <div class="modal-box">
-                <h1 class="text-lg font-bold">Add Tiny Item</h1>
-
-                <form method="dialog"
-                      @submit="$store.character.tinyItems.push({name: name, description: description}); name = ''; description = '';">
-                    <label for="tinyItemName" class="label">Name</label>
-                    <input x-model="name" name="tinyItemName" id="tinyItemName"
-                           type="text" required
-                           class="input validator w-full"/>
-                    <label for="tinyItemDescription"
-                           class="label">Description</label>
-                    <textarea x-model="description" name="tinyItemDescription"
-                              id="tinyItemDescription"
-                              class="textarea w-full"></textarea>
-                    <div class="modal-action">
-                        <button class="btn" type="reset"
-                                @click="document.querySelector('#addTinyItem').close()"
-                        >
-                            Cancel
-                        </button>
-                        <button class="btn" type="submit">Add Tiny Item</button>
-                    </div>
-
-                </form>
-            </div>
-        </dialog>
-        <ul class="list mb-4">
-            <template x-for="(item, index) in $store.character.tinyItems"
-                      :key="index">
-                <li class="list-row">
-                    <div class="text-lg opacity-30 tabular-nums"
-                         x-text="index + 1"></div>
-                    <div>
-                        <div x-text="item.name"></div>
-                    </div>
-                    <template x-if="item.description !== ''">
-                        <div class="list-col-wrap text-xs"
-                             x-text="item.description"></div>
-                    </template>
-                    <button class="btn btn-square text-lg"
-                            @click="$store.character.tinyItems.splice(index, 1)">
-                        <span class="icon-[tabler--trash]"></span>
-                    </button>
-                </li>
-            </template>
-        </ul>
-
-        <h3 class="text-lg mb-2">Memento</h3>
-        <label class=" label floating-label block"><span>Memento</span>
-            <textarea class="textarea w-full"
-                      x-model="$store.character.memento"></textarea></label>
     </div>
     <div x-show="$store.activeTab === 'basic'">
         <fieldset

@@ -66,9 +66,7 @@ type Character = {
   };
 
   // Currency
-  copper: number;
-  silver: number;
-  gold: number;
+  coins: { copper: number; silver: number; gold: number };
 
   // Skills
   skills: {
@@ -177,10 +175,11 @@ const initialCharacter: Character = {
   deathRolls: { successes: 0, failures: 0 },
 
   // Currency
-  copper: 0,
-  silver: 0,
-  gold: 0,
-
+  coins: {
+    copper: 0,
+    silver: 0,
+    gold: 0,
+  },
   // Skills
   skills: {
     acrobatics: { label: "Acrobatics (AGL)", value: 0, marked: false },
