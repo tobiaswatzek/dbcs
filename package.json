@@ -17,7 +17,13 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
+    "@iconify-json/game-icons": "^1.2.4",
+    "@iconify-json/tabler": "^1.2.35",
+    "@iconify/tailwind4": "^1.2.3",
+    "@tailwindcss/vite": "^4.3.0",
+    "daisyui": "^5.5.20",
     "pinia": "^3.0.4",
+    "tailwindcss": "^4.3.0",
     "vue": "^3.5.32",
     "vue-router": "^5.0.4"
   },
