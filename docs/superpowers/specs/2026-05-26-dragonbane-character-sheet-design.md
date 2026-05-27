@@ -230,7 +230,7 @@ Derived stats remain manually entered — no auto-calculation from attributes, t
 - `vite-plugin-pwa` with Workbox `generateSW` mode
 - Cache-first for all static assets; no runtime network requests
 - Manifest:
-  - `name`: "Dragonbane Character Sheet"
+  - `name`: "DBCS"
   - `short_name`: "DBCS"
   - `display`: "standalone"
   - `start_url`: "/"
