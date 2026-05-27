@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @plugin "@iconify/tailwind4";
 @plugin "daisyui" {
-  themes: emerald --default, sunset --prefersdark;
+  themes:
+    emerald --default,
+    sunset --prefersdark;
 }
