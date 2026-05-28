@@ -1,4 +1,4 @@
-import type { Character, FixedSkill } from '../types/character'
+import type { Character } from '../types/character'
 
 export const SKILL_LABELS: Record<keyof Character['skills'], string> = {
   acrobatics: 'Acrobatics (AGL)',

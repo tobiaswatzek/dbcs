@@ -50,10 +50,7 @@ const attributePairs = [
   },
 ]
 
-function updateSkill(
-  key: keyof NonNullable<typeof character.value>['skills'],
-  skill: FixedSkill,
-) {
+function updateSkill(key: keyof NonNullable<typeof character.value>['skills'], skill: FixedSkill) {
   if (character.value) character.value.skills[key] = skill
 }
 function updateWeaponSkill(
@@ -93,19 +90,24 @@ function addSecondarySkill() {
         <div v-for="p in attributePairs" :key="p.attrKey" class="flex flex-col items-center gap-2">
           <label class="label floating-label">
             <span>{{ p.attrLabel }}</span>
-            <input type="number" class="input w-20" step="1" min="0" :value="character.attributes[p.attrKey]" @change="
-              character.attributes[p.attrKey] = +(
-                $event.target as HTMLInputElement
-              ).value
-              " />
+            <input
+              type="number"
+              class="input w-20"
+              step="1"
+              min="0"
+              :value="character.attributes[p.attrKey]"
+              @change="character.attributes[p.attrKey] = +($event.target as HTMLInputElement).value"
+            />
           </label>
           <label class="label text-sm gap-1">
-            <input type="checkbox" class="checkbox checkbox-sm checked:checkbox-warning"
-              :checked="character.conditions[p.condKey]" @change="
-                character.conditions[p.condKey] = (
-                  $event.target as HTMLInputElement
-                ).checked
-                " />
+            <input
+              type="checkbox"
+              class="checkbox checkbox-sm checked:checkbox-warning"
+              :checked="character.conditions[p.condKey]"
+              @change="
+                character.conditions[p.condKey] = ($event.target as HTMLInputElement).checked
+              "
+            />
             {{ p.condLabel }}
           </label>
         </div>
@@ -122,9 +124,7 @@ function addSecondarySkill() {
           :skill="skill"
           :skill-id="key"
           :label="SKILL_LABELS[key as keyof typeof SKILL_LABELS]"
-          @update:skill="
-            updateSkill(key as keyof typeof character.skills, $event)
-          "
+          @update:skill="updateSkill(key as keyof typeof character.skills, $event)"
         />
       </div>
     </fieldset>
@@ -139,12 +139,7 @@ function addSecondarySkill() {
           :skill="skill"
           :skill-id="`weapon-${key}`"
           :label="WEAPON_SKILL_LABELS[key as keyof typeof WEAPON_SKILL_LABELS]"
-          @update:skill="
-            updateWeaponSkill(
-              key as keyof typeof character.weaponSkills,
-              $event,
-            )
-          "
+          @update:skill="updateWeaponSkill(key as keyof typeof character.weaponSkills, $event)"
         />
       </div>
     </fieldset>
@@ -153,7 +148,11 @@ function addSecondarySkill() {
     <fieldset class="fieldset border-base-300 rounded-box border p-4">
       <legend class="fieldset-legend">Secondary Skills</legend>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mb-3">
-        <div v-for="(skill, i) in character.secondarySkills" :key="i" class="flex gap-1 items-center">
+        <div
+          v-for="(skill, i) in character.secondarySkills"
+          :key="i"
+          class="flex gap-1 items-center"
+        >
           <SkillRow
             class="flex-1"
             :skill="skill"
@@ -161,30 +160,45 @@ function addSecondarySkill() {
             :label="skill.label"
             @update:skill="updateSecondarySkill(i, $event)"
           />
-          <button class="btn btn-ghost btn-sm btn-square min-h-[48px] min-w-[48px]"
-            :aria-label="`Remove ${skill.label}`" @click="character.secondarySkills.splice(i, 1)">
+          <button
+            class="btn btn-ghost btn-sm btn-square min-h-[48px] min-w-[48px]"
+            :aria-label="`Remove ${skill.label}`"
+            @click="character.secondarySkills.splice(i, 1)"
+          >
             <span class="icon-[tabler--trash]" aria-hidden="true"></span>
           </button>
         </div>
       </div>
-      <button class="btn btn-sm min-h-[44px]" @click="showAddSecondary = true">
-        Add Skill
-      </button>
+      <button class="btn btn-sm min-h-[44px]" @click="showAddSecondary = true">Add Skill</button>
 
       <dialog :open="showAddSecondary" class="modal">
         <div class="modal-box">
           <h2 class="text-lg font-bold">Add Secondary Skill</h2>
           <label for="new-secondary-label" class="label mt-2">Name</label>
-          <input id="new-secondary-label" v-model="newSecondaryLabel" type="text" class="input w-full"
-            @keyup.enter="addSecondarySkill" />
+          <input
+            id="new-secondary-label"
+            v-model="newSecondaryLabel"
+            type="text"
+            class="input w-full"
+            @keyup.enter="addSecondarySkill"
+          />
           <div class="modal-action">
-            <button class="btn" @click="
-              showAddSecondary = false;
-            newSecondaryLabel = '';
-            ">
+            <button
+              class="btn"
+              @click="
+                () => {
+                  showAddSecondary = false
+                  newSecondaryLabel = ''
+                }
+              "
+            >
               Cancel
             </button>
-            <button class="btn btn-primary" :disabled="!newSecondaryLabel.trim()" @click="addSecondarySkill">
+            <button
+              class="btn btn-primary"
+              :disabled="!newSecondaryLabel.trim()"
+              @click="addSecondarySkill"
+            >
               Add
             </button>
           </div>
