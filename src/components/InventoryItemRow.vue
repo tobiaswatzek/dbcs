@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { InventoryItem } from "../types/character";
-defineProps<{ item: InventoryItem; index: number }>();
-defineEmits<{ remove: [] }>();
+import type { InventoryItem } from '../types/character'
+defineProps<{ item: InventoryItem; index: number }>()
+defineEmits<{ remove: [] }>()
 </script>
 
 <template>

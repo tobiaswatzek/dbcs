@@ -2,10 +2,10 @@
 withDefaults(
   defineProps<{ open: boolean; message: string; confirmLabel?: string }>(),
   {
-    confirmLabel: "Confirm",
+    confirmLabel: 'Confirm',
   },
-);
-const emit = defineEmits<{ confirm: []; cancel: [] }>();
+)
+const emit = defineEmits<{ confirm: []; cancel: [] }>()
 </script>
 
 <template>

@@ -1,78 +1,78 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { storeToRefs } from "pinia";
-import { useCharacterStore } from "../stores/character";
-import SkillRow from "../components/SkillRow.vue";
-import type { Skill } from "../types/character";
+import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useCharacterStore } from '../stores/character'
+import SkillRow from '../components/SkillRow.vue'
+import type { Skill } from '../types/character'
 
-const { character } = storeToRefs(useCharacterStore());
+const { character } = storeToRefs(useCharacterStore())
 
-const showAddSecondary = ref(false);
-const newSecondaryLabel = ref("");
+const showAddSecondary = ref(false)
+const newSecondaryLabel = ref('')
 
 const attributePairs = [
   {
-    attrKey: "str" as const,
-    condKey: "exhausted" as const,
-    attrLabel: "Strength",
-    condLabel: "Exhausted",
+    attrKey: 'str' as const,
+    condKey: 'exhausted' as const,
+    attrLabel: 'Strength',
+    condLabel: 'Exhausted',
   },
   {
-    attrKey: "con" as const,
-    condKey: "sickly" as const,
-    attrLabel: "Constitution",
-    condLabel: "Sickly",
+    attrKey: 'con' as const,
+    condKey: 'sickly' as const,
+    attrLabel: 'Constitution',
+    condLabel: 'Sickly',
   },
   {
-    attrKey: "agl" as const,
-    condKey: "dazed" as const,
-    attrLabel: "Agility",
-    condLabel: "Dazed",
+    attrKey: 'agl' as const,
+    condKey: 'dazed' as const,
+    attrLabel: 'Agility',
+    condLabel: 'Dazed',
   },
   {
-    attrKey: "int" as const,
-    condKey: "angry" as const,
-    attrLabel: "Intelligence",
-    condLabel: "Angry",
+    attrKey: 'int' as const,
+    condKey: 'angry' as const,
+    attrLabel: 'Intelligence',
+    condLabel: 'Angry',
   },
   {
-    attrKey: "wil" as const,
-    condKey: "scared" as const,
-    attrLabel: "Willpower",
-    condLabel: "Scared",
+    attrKey: 'wil' as const,
+    condKey: 'scared' as const,
+    attrLabel: 'Willpower',
+    condLabel: 'Scared',
   },
   {
-    attrKey: "cha" as const,
-    condKey: "disheartened" as const,
-    attrLabel: "Charisma",
-    condLabel: "Disheartened",
+    attrKey: 'cha' as const,
+    condKey: 'disheartened' as const,
+    attrLabel: 'Charisma',
+    condLabel: 'Disheartened',
   },
-];
+]
 
 function updateSkill(
-  key: keyof NonNullable<typeof character.value>["skills"],
+  key: keyof NonNullable<typeof character.value>['skills'],
   skill: Skill,
 ) {
-  if (character.value) character.value.skills[key] = skill;
+  if (character.value) character.value.skills[key] = skill
 }
 function updateWeaponSkill(
-  key: keyof NonNullable<typeof character.value>["weaponSkills"],
+  key: keyof NonNullable<typeof character.value>['weaponSkills'],
   skill: Skill,
 ) {
-  if (character.value) character.value.weaponSkills[key] = skill;
+  if (character.value) character.value.weaponSkills[key] = skill
 }
 function updateSecondarySkill(index: number, skill: Skill) {
-  if (character.value) character.value.secondarySkills[index] = skill;
+  if (character.value) character.value.secondarySkills[index] = skill
 }
 function addSecondarySkill() {
-  if (!character.value || !newSecondaryLabel.value.trim()) return;
+  if (!character.value || !newSecondaryLabel.value.trim()) return
   character.value.secondarySkills.push({
     label: newSecondaryLabel.value.trim(),
     value: 0,
     marked: false,
-  });
-  newSecondaryLabel.value = "";
-  showAddSecondary.value = false;
+  })
+  newSecondaryLabel.value = ''
+  showAddSecondary.value = false
 }
 </script>
 
@@ -197,8 +197,8 @@ function addSecondarySkill() {
             <button
               class="btn"
               @click="
-                showAddSecondary = false;
-                newSecondaryLabel = '';
+                showAddSecondary = false
+                newSecondaryLabel = ''
               "
             >
               Cancel

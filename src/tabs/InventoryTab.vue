@@ -1,52 +1,52 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-import { storeToRefs } from "pinia";
-import { useCharacterStore } from "../stores/character";
-import InventoryItemRow from "../components/InventoryItemRow.vue";
-import TinyItemRow from "../components/TinyItemRow.vue";
+import { computed, ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useCharacterStore } from '../stores/character'
+import InventoryItemRow from '../components/InventoryItemRow.vue'
+import TinyItemRow from '../components/TinyItemRow.vue'
 
-const { character } = storeToRefs(useCharacterStore());
+const { character } = storeToRefs(useCharacterStore())
 
 const totalWeight = computed(
   () => character.value?.inventory.reduce((s, i) => s + i.weight, 0) ?? 0,
-);
+)
 
 const overEncumbered = computed(
   () =>
     !!character.value &&
     character.value.encumbranceLimit > 0 &&
     totalWeight.value > character.value.encumbranceLimit,
-);
+)
 
-const showAddItem = ref(false);
-const newName = ref("");
-const newWeight = ref(1);
-const newDesc = ref("");
+const showAddItem = ref(false)
+const newName = ref('')
+const newWeight = ref(1)
+const newDesc = ref('')
 function addItem() {
-  if (!character.value || !newName.value.trim()) return;
+  if (!character.value || !newName.value.trim()) return
   character.value.inventory.push({
     name: newName.value.trim(),
     weight: newWeight.value,
     description: newDesc.value.trim(),
-  });
-  newName.value = "";
-  newWeight.value = 1;
-  newDesc.value = "";
-  showAddItem.value = false;
+  })
+  newName.value = ''
+  newWeight.value = 1
+  newDesc.value = ''
+  showAddItem.value = false
 }
 
-const showAddTiny = ref(false);
-const newTinyName = ref("");
-const newTinyDesc = ref("");
+const showAddTiny = ref(false)
+const newTinyName = ref('')
+const newTinyDesc = ref('')
 function addTinyItem() {
-  if (!character.value || !newTinyName.value.trim()) return;
+  if (!character.value || !newTinyName.value.trim()) return
   character.value.tinyItems.push({
     name: newTinyName.value.trim(),
     description: newTinyDesc.value.trim(),
-  });
-  newTinyName.value = "";
-  newTinyDesc.value = "";
-  showAddTiny.value = false;
+  })
+  newTinyName.value = ''
+  newTinyDesc.value = ''
+  showAddTiny.value = false
 }
 </script>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { TinyItem } from "../types/character";
-defineProps<{ item: TinyItem; index: number }>();
-defineEmits<{ remove: [] }>();
+import type { TinyItem } from '../types/character'
+defineProps<{ item: TinyItem; index: number }>()
+defineEmits<{ remove: [] }>()
 </script>
 
 <template>

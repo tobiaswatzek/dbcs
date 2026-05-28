@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-import { useCharacterStore } from "../stores/character";
+import { storeToRefs } from 'pinia'
+import { useCharacterStore } from '../stores/character'
 
-const { character } = storeToRefs(useCharacterStore());
+const { character } = storeToRefs(useCharacterStore())
 
 const PROFESSIONS = [
-  "Artisan",
-  "Bard",
-  "Fighter",
-  "Hunter",
-  "Knight",
-  "Mage",
-  "Mariner",
-  "Merchant",
-  "Scholar",
-  "Thief",
-];
-const KINS = ["Human", "Elf", "Dwarf", "Halfling", "Mallard", "Wolfkin"];
+  'Artisan',
+  'Bard',
+  'Fighter',
+  'Hunter',
+  'Knight',
+  'Mage',
+  'Mariner',
+  'Merchant',
+  'Scholar',
+  'Thief',
+]
+const KINS = ['Human', 'Elf', 'Dwarf', 'Halfling', 'Mallard', 'Wolfkin']
 </script>
 
 <template>

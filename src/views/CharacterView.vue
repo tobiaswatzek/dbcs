@@ -1,48 +1,48 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import { storeToRefs } from "pinia";
-import { useCharacterStore } from "../stores/character";
-import CharacterHeader from "../components/CharacterHeader.vue";
+import { onMounted, onUnmounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { useCharacterStore } from '../stores/character'
+import CharacterHeader from '../components/CharacterHeader.vue'
 
-const route = useRoute();
-const router = useRouter();
-const store = useCharacterStore();
-const { character } = storeToRefs(store);
+const route = useRoute()
+const router = useRouter()
+const store = useCharacterStore()
+const { character } = storeToRefs(store)
 
 const tabs = [
   {
-    name: "skills",
-    path: "skills",
-    label: "Skills",
-    icon: "icon-[game-icons--skills]",
+    name: 'skills',
+    path: 'skills',
+    label: 'Skills',
+    icon: 'icon-[game-icons--skills]',
   },
   {
-    name: "combat",
-    path: "combat",
-    label: "Combat",
-    icon: "icon-[game-icons--swords-emblem]",
+    name: 'combat',
+    path: 'combat',
+    label: 'Combat',
+    icon: 'icon-[game-icons--swords-emblem]',
   },
   {
-    name: "inventory",
-    path: "inventory",
-    label: "Inventory",
-    icon: "icon-[game-icons--swap-bag]",
+    name: 'inventory',
+    path: 'inventory',
+    label: 'Inventory',
+    icon: 'icon-[game-icons--swap-bag]',
   },
   {
-    name: "background",
-    path: "background",
-    label: "Background",
-    icon: "icon-[game-icons--white-book]",
+    name: 'background',
+    path: 'background',
+    label: 'Background',
+    icon: 'icon-[game-icons--white-book]',
   },
-];
+]
 
 onMounted(async () => {
-  const found = await store.loadCharacter(route.params.id as string);
-  if (!found) router.replace("/");
-});
+  const found = await store.loadCharacter(route.params.id as string)
+  if (!found) router.replace('/')
+})
 
-onUnmounted(() => store.clearCharacter());
+onUnmounted(() => store.clearCharacter())
 </script>
 
 <template>
@@ -56,14 +56,14 @@ onUnmounted(() => store.clearCharacter());
       </div>
       <div class="flex-1 text-center overflow-hidden px-2">
         <div class="font-bold truncate">
-          {{ character.name || "Character" }}
+          {{ character.name || 'Character' }}
         </div>
         <div
           v-if="character.kin || character.profession"
           class="text-xs opacity-60 truncate"
         >
           {{
-            [character.kin, character.profession].filter(Boolean).join(" · ")
+            [character.kin, character.profession].filter(Boolean).join(' · ')
           }}
         </div>
       </div>

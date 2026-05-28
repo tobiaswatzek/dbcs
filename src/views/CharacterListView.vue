@@ -1,75 +1,75 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { useRouter } from "vue-router";
-import { useCharacterListStore } from "../stores/characterList";
-import { putCharacter, getCharacter } from "../db";
-import { exportCharacterAsJson } from "../utils/export";
-import { parseAndValidateCharacter } from "../utils/import";
-import { createBlankCharacter } from "../utils/character";
-import ConfirmDialog from "../components/ConfirmDialog.vue";
-import type { CharacterSummary } from "../types/character";
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useCharacterListStore } from '../stores/characterList'
+import { putCharacter, getCharacter } from '../db'
+import { exportCharacterAsJson } from '../utils/export'
+import { parseAndValidateCharacter } from '../utils/import'
+import { createBlankCharacter } from '../utils/character'
+import ConfirmDialog from '../components/ConfirmDialog.vue'
+import type { CharacterSummary } from '../types/character'
 
-const router = useRouter();
-const listStore = useCharacterListStore();
+const router = useRouter()
+const listStore = useCharacterListStore()
 
-const deleteTarget = ref<CharacterSummary | null>(null);
-const importError = ref<string | null>(null);
-const fileInputRef = ref<HTMLInputElement | null>(null);
+const deleteTarget = ref<CharacterSummary | null>(null)
+const importError = ref<string | null>(null)
+const fileInputRef = ref<HTMLInputElement | null>(null)
 
-onMounted(() => listStore.loadSummaries());
+onMounted(() => listStore.loadSummaries())
 
 async function createCharacter() {
   const character = {
     ...createBlankCharacter(),
     id: crypto.randomUUID(),
     updatedAt: new Date().toISOString(),
-  };
-  await putCharacter(character);
+  }
+  await putCharacter(character)
   listStore.addSummary({
     id: character.id,
     name: character.name,
     kin: character.kin,
     profession: character.profession,
     updatedAt: character.updatedAt,
-  });
-  router.push(`/character/${character.id}/skills`);
+  })
+  router.push(`/character/${character.id}/skills`)
 }
 
 async function onFileSelected(event: Event) {
-  const file = (event.target as HTMLInputElement).files?.[0];
-  if (!file) return;
-  const text = await file.text();
-  const result = parseAndValidateCharacter(text);
+  const file = (event.target as HTMLInputElement).files?.[0]
+  if (!file) return
+  const text = await file.text()
+  const result = parseAndValidateCharacter(text)
   if (!result.success) {
-    importError.value = result.error;
-    return;
+    importError.value = result.error
+    return
   }
-  importError.value = null;
+  importError.value = null
   const character = {
     ...result.character,
     id: crypto.randomUUID(),
     updatedAt: new Date().toISOString(),
-  };
-  await putCharacter(character);
+  }
+  await putCharacter(character)
   listStore.addSummary({
     id: character.id,
     name: character.name,
     kin: character.kin,
     profession: character.profession,
     updatedAt: character.updatedAt,
-  });
-  if (fileInputRef.value) fileInputRef.value.value = "";
+  })
+  if (fileInputRef.value) fileInputRef.value.value = ''
 }
 
 async function exportCharacter(summary: CharacterSummary) {
-  const character = await getCharacter(summary.id);
-  if (character) exportCharacterAsJson(character);
+  const character = await getCharacter(summary.id)
+  if (character) exportCharacterAsJson(character)
 }
 
 async function onDeleteConfirmed() {
-  if (!deleteTarget.value) return;
-  await listStore.removeCharacter(deleteTarget.value.id);
-  deleteTarget.value = null;
+  if (!deleteTarget.value) return
+  await listStore.removeCharacter(deleteTarget.value.id)
+  deleteTarget.value = null
 }
 </script>
 
@@ -122,11 +122,11 @@ async function onDeleteConfirmed() {
                 class="flex-1 min-h-[48px] flex flex-col justify-center"
               >
                 <h2 class="card-title text-base">
-                  {{ summary.name || "Unnamed" }}
+                  {{ summary.name || 'Unnamed' }}
                 </h2>
                 <p class="text-sm opacity-60">
                   {{
-                    [summary.kin, summary.profession].filter(Boolean).join(" ")
+                    [summary.kin, summary.profession].filter(Boolean).join(' ')
                   }}
                 </p>
               </RouterLink>

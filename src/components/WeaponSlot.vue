@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import type { Weapon } from "../types/character";
+import type { Weapon } from '../types/character'
 
-const props = defineProps<{ weapon: Weapon; index: number }>();
-const emit = defineEmits<{ "update:weapon": [w: Weapon]; remove: [] }>();
+const props = defineProps<{ weapon: Weapon; index: number }>()
+const emit = defineEmits<{ 'update:weapon': [w: Weapon]; remove: [] }>()
 
 function u(field: keyof Weapon, value: string | number | null) {
-  emit("update:weapon", { ...props.weapon, [field]: value });
+  emit('update:weapon', { ...props.weapon, [field]: value })
 }
 function str(e: Event) {
-  return (e.target as HTMLInputElement).value;
+  return (e.target as HTMLInputElement).value
 }
 function num(e: Event) {
-  const v = (e.target as HTMLInputElement).value;
-  return v === "" ? null : Number(v);
+  const v = (e.target as HTMLInputElement).value
+  return v === '' ? null : Number(v)
 }
 </script>
 

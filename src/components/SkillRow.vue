@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import type { Skill } from "../types/character";
+import type { Skill } from '../types/character'
 
-const props = defineProps<{ skill: Skill; skillId: string }>();
-const emit = defineEmits<{ "update:skill": [skill: Skill] }>();
+const props = defineProps<{ skill: Skill; skillId: string }>()
+const emit = defineEmits<{ 'update:skill': [skill: Skill] }>()
 
 function onMarkChange(e: Event) {
-  emit("update:skill", {
+  emit('update:skill', {
     ...props.skill,
     marked: (e.target as HTMLInputElement).checked,
-  });
+  })
 }
 function onValueChange(e: Event) {
-  const v = parseInt((e.target as HTMLInputElement).value, 10);
-  emit("update:skill", { ...props.skill, value: isNaN(v) ? 0 : v });
+  const v = parseInt((e.target as HTMLInputElement).value, 10)
+  emit('update:skill', { ...props.skill, value: isNaN(v) ? 0 : v })
 }
 </script>
 

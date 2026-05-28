@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-import { useCharacterStore } from "../stores/character";
-import WeaponSlot from "../components/WeaponSlot.vue";
-import type { Weapon } from "../types/character";
+import { storeToRefs } from 'pinia'
+import { useCharacterStore } from '../stores/character'
+import WeaponSlot from '../components/WeaponSlot.vue'
+import type { Weapon } from '../types/character'
 
-const { character } = storeToRefs(useCharacterStore());
+const { character } = storeToRefs(useCharacterStore())
 
 function addWeapon() {
   character.value?.weapons.push({
-    name: "",
-    grip: "",
-    range: "",
-    damage: "",
+    name: '',
+    grip: '',
+    range: '',
+    damage: '',
     durability: null,
-    features: "",
-  });
+    features: '',
+  })
 }
 function updateWeapon(i: number, w: Weapon) {
-  if (character.value) character.value.weapons[i] = w;
+  if (character.value) character.value.weapons[i] = w
 }
 </script>
 
