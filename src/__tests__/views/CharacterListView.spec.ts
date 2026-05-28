@@ -62,7 +62,8 @@ describe("CharacterListView", () => {
   it("shows import error alert on invalid file", async () => {
     const w = mountView();
     // Trigger importError state directly
-    (w.vm as any).importError = "Invalid JSON: the file could not be parsed.";
+    (w.vm as { importError: string | null }).importError =
+      "Invalid JSON: the file could not be parsed.";
     await w.vm.$nextTick();
     expect(w.find('[role="alert"]').exists()).toBe(true);
   });

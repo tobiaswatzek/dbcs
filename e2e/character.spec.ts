@@ -81,7 +81,7 @@ test.describe('Export / Import', () => {
     await page.getByRole('button', { name: /Actions for/ }).click()
     await page.getByRole('menuitem', { name: 'Delete' }).click()
     await page.getByTestId('confirm-btn').click()
-    await expect(page.getByText('Exported Hero')).not.toBeVisible()
+    await expect(page.getByText('Exported Hero')).toBeHidden()
 
     // Import from downloaded file
     const fileChooserPromise = page.waitForEvent('filechooser')

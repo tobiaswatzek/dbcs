@@ -9,9 +9,9 @@ describe("exportCharacterAsJson", () => {
   beforeEach(() => {
     anchor = document.createElement("a");
     vi.spyOn(anchor, "click").mockImplementation(() => {});
-    vi.spyOn(document, "createElement").mockReturnValue(anchor as any);
-    vi.spyOn(document.body, "appendChild").mockReturnValue(anchor as any);
-    vi.spyOn(document.body, "removeChild").mockReturnValue(anchor as any);
+    vi.spyOn(document, "createElement").mockReturnValue(anchor as unknown as HTMLElement);
+    vi.spyOn(document.body, "appendChild").mockReturnValue(anchor as unknown as Node);
+    vi.spyOn(document.body, "removeChild").mockReturnValue(anchor as unknown as Node);
     vi.spyOn(URL, "createObjectURL").mockReturnValue("blob:mock");
     vi.spyOn(URL, "revokeObjectURL").mockImplementation(() => {});
   });
