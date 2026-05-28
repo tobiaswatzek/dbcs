@@ -16,9 +16,7 @@ export function autosavePlugin({ store }: PiniaPluginContext) {
       timeout = setTimeout(async () => {
         if (!state.character) return
         const updatedAt = new Date().toISOString()
-        const toSave = JSON.parse(
-          JSON.stringify(state.character),
-        ) as typeof state.character
+        const toSave = JSON.parse(JSON.stringify(state.character)) as typeof state.character
         toSave.updatedAt = updatedAt
         await putCharacter(toSave)
         saving = true

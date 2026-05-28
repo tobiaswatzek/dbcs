@@ -56,9 +56,7 @@ describe('getAllCharacterSummaries', () => {
   })
 
   it('returns only summary fields', async () => {
-    await putCharacter(
-      makeChar({ id: 'a', name: 'Alice', kin: 'Elf', profession: 'Mage' }),
-    )
+    await putCharacter(makeChar({ id: 'a', name: 'Alice', kin: 'Elf', profession: 'Mage' }))
     const summaries = await getAllCharacterSummaries()
     expect(summaries).toHaveLength(1)
     expect(summaries[0]).toEqual({

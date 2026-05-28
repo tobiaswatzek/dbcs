@@ -78,12 +78,8 @@ async function onDeleteConfirmed() {
     <nav class="navbar bg-base-100 shadow-sm">
       <div class="flex-1"><h1 class="text-xl font-bold px-2">DBCS</h1></div>
       <div class="flex-none gap-2 pr-2">
-        <button class="btn btn-primary min-h-[48px]" @click="createCharacter">
-          New Character
-        </button>
-        <button class="btn min-h-[48px]" @click="fileInputRef?.click()">
-          Import
-        </button>
+        <button class="btn btn-primary min-h-[48px]" @click="createCharacter">New Character</button>
+        <button class="btn min-h-[48px]" @click="fileInputRef?.click()">Import</button>
         <input
           ref="fileInputRef"
           type="file"
@@ -97,9 +93,7 @@ async function onDeleteConfirmed() {
     <main class="p-4 flex flex-col gap-4 flex-1">
       <div v-if="importError" role="alert" class="alert alert-error">
         <span>{{ importError }}</span>
-        <button class="btn btn-sm btn-ghost" @click="importError = null">
-          Dismiss
-        </button>
+        <button class="btn btn-sm btn-ghost" @click="importError = null">Dismiss</button>
       </div>
 
       <p
@@ -125,9 +119,7 @@ async function onDeleteConfirmed() {
                   {{ summary.name || 'Unnamed' }}
                 </h2>
                 <p class="text-sm opacity-60">
-                  {{
-                    [summary.kin, summary.profession].filter(Boolean).join(' ')
-                  }}
+                  {{ [summary.kin, summary.profession].filter(Boolean).join(' ') }}
                 </p>
               </RouterLink>
               <div class="dropdown dropdown-end">
@@ -146,9 +138,7 @@ async function onDeleteConfirmed() {
                     <button @click="exportCharacter(summary)">Export</button>
                   </li>
                   <li>
-                    <button class="text-error" @click="deleteTarget = summary">
-                      Delete
-                    </button>
+                    <button class="text-error" @click="deleteTarget = summary">Delete</button>
                   </li>
                 </ul>
               </div>

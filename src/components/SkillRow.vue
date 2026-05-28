@@ -17,9 +17,7 @@ function onValueChange(e: Event) {
 </script>
 
 <template>
-  <div
-    class="flex items-center justify-between p-2 bg-base-200/30 rounded-lg min-h-[48px]"
-  >
+  <div class="flex items-center justify-between p-2 bg-base-200/30 rounded-lg min-h-[48px]">
     <div class="flex items-center gap-2">
       <input
         :id="`mark-${skillId}`"
@@ -28,13 +26,9 @@ function onValueChange(e: Event) {
         class="checkbox checkbox-sm"
         @change="onMarkChange"
       />
-      <label :for="`mark-${skillId}`" class="text-sm select-none">{{
-        label
-      }}</label>
+      <label :for="`mark-${skillId}`" class="text-sm select-none">{{ label }}</label>
     </div>
-    <label :for="`value-${skillId}`" class="sr-only"
-      >{{ label }} value</label
-    >
+    <label :for="`value-${skillId}`" class="sr-only">{{ label }} value</label>
     <input
       :id="`value-${skillId}`"
       type="number"

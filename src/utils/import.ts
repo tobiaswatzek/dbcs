@@ -29,12 +29,7 @@ const REQUIRED_OBJECTS = [
   'helmet',
 ] as const
 
-const REQUIRED_ARRAYS = [
-  'secondarySkills',
-  'weapons',
-  'inventory',
-  'tinyItems',
-] as const
+const REQUIRED_ARRAYS = ['secondarySkills', 'weapons', 'inventory', 'tinyItems'] as const
 
 export function parseAndValidateCharacter(json: string): ImportResult {
   let parsed: unknown
@@ -63,11 +58,7 @@ export function parseAndValidateCharacter(json: string): ImportResult {
   }
 
   for (const field of REQUIRED_OBJECTS) {
-    if (
-      typeof obj[field] !== 'object' ||
-      obj[field] === null ||
-      Array.isArray(obj[field])
-    ) {
+    if (typeof obj[field] !== 'object' || obj[field] === null || Array.isArray(obj[field])) {
       return {
         success: false,
         error: `Invalid format: missing or invalid field "${field}".`,

@@ -1,10 +1,7 @@
 <script setup lang="ts">
-withDefaults(
-  defineProps<{ open: boolean; message: string; confirmLabel?: string }>(),
-  {
-    confirmLabel: 'Confirm',
-  },
-)
+withDefaults(defineProps<{ open: boolean; message: string; confirmLabel?: string }>(), {
+  confirmLabel: 'Confirm',
+})
 const emit = defineEmits<{ confirm: []; cancel: [] }>()
 </script>
 
@@ -13,11 +10,7 @@ const emit = defineEmits<{ confirm: []; cancel: [] }>()
     <div class="modal-box">
       <p class="py-4">{{ message }}</p>
       <div class="modal-action">
-        <button
-          data-testid="cancel-btn"
-          class="btn min-h-[48px]"
-          @click="emit('cancel')"
-        >
+        <button data-testid="cancel-btn" class="btn min-h-[48px]" @click="emit('cancel')">
           Cancel
         </button>
         <button

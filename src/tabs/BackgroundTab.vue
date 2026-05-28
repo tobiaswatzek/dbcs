@@ -55,9 +55,7 @@ const KINS = ['Human', 'Elf', 'Dwarf', 'Halfling', 'Mallard', 'Wolfkin']
             list="profession-list"
             class="input w-full"
             :value="character.profession"
-            @input="
-              character.profession = ($event.target as HTMLInputElement).value
-            "
+            @input="character.profession = ($event.target as HTMLInputElement).value"
           />
           <datalist id="profession-list">
             <option v-for="p in PROFESSIONS" :key="p" :value="p" />
@@ -83,9 +81,7 @@ const KINS = ['Human', 'Elf', 'Dwarf', 'Halfling', 'Mallard', 'Wolfkin']
           <textarea
             class="textarea w-full"
             :value="character.weakness"
-            @input="
-              character.weakness = ($event.target as HTMLTextAreaElement).value
-            "
+            @input="character.weakness = ($event.target as HTMLTextAreaElement).value"
           ></textarea>
         </label>
         <label class="label floating-label block">
@@ -93,11 +89,7 @@ const KINS = ['Human', 'Elf', 'Dwarf', 'Halfling', 'Mallard', 'Wolfkin']
           <textarea
             class="textarea w-full"
             :value="character.appearance"
-            @input="
-              character.appearance = (
-                $event.target as HTMLTextAreaElement
-              ).value
-            "
+            @input="character.appearance = ($event.target as HTMLTextAreaElement).value"
           ></textarea>
         </label>
         <label class="label floating-label block">
@@ -105,9 +97,7 @@ const KINS = ['Human', 'Elf', 'Dwarf', 'Halfling', 'Mallard', 'Wolfkin']
           <textarea
             class="textarea w-full"
             :value="character.memento"
-            @input="
-              character.memento = ($event.target as HTMLTextAreaElement).value
-            "
+            @input="character.memento = ($event.target as HTMLTextAreaElement).value"
           ></textarea>
         </label>
         <label class="label floating-label block">
@@ -115,9 +105,7 @@ const KINS = ['Human', 'Elf', 'Dwarf', 'Halfling', 'Mallard', 'Wolfkin']
           <textarea
             class="textarea w-full min-h-32"
             :value="character.abilities"
-            @input="
-              character.abilities = ($event.target as HTMLTextAreaElement).value
-            "
+            @input="character.abilities = ($event.target as HTMLTextAreaElement).value"
           ></textarea>
         </label>
       </div>

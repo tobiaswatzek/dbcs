@@ -50,21 +50,14 @@ onUnmounted(() => store.clearCharacter())
     <!-- Navbar -->
     <nav class="navbar bg-base-100 shadow-sm">
       <div class="flex-none">
-        <RouterLink to="/" class="btn btn-ghost btn-sm min-h-[48px]"
-          >← Characters</RouterLink
-        >
+        <RouterLink to="/" class="btn btn-ghost btn-sm min-h-[48px]">← Characters</RouterLink>
       </div>
       <div class="flex-1 text-center overflow-hidden px-2">
         <div class="font-bold truncate">
           {{ character.name || 'Character' }}
         </div>
-        <div
-          v-if="character.kin || character.profession"
-          class="text-xs opacity-60 truncate"
-        >
-          {{
-            [character.kin, character.profession].filter(Boolean).join(' · ')
-          }}
+        <div v-if="character.kin || character.profession" class="text-xs opacity-60 truncate">
+          {{ [character.kin, character.profession].filter(Boolean).join(' · ') }}
         </div>
       </div>
       <div class="flex-none w-24"></div>

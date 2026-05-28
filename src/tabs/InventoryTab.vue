@@ -63,9 +63,7 @@ function addTinyItem() {
             step="1"
             min="0"
             :value="character.coins.gold"
-            @input="
-              character.coins.gold = +($event.target as HTMLInputElement).value
-            "
+            @input="character.coins.gold = +($event.target as HTMLInputElement).value"
           />
         </label>
         <label class="label floating-label">
@@ -76,10 +74,7 @@ function addTinyItem() {
             step="1"
             min="0"
             :value="character.coins.silver"
-            @input="
-              character.coins.silver = +($event.target as HTMLInputElement)
-                .value
-            "
+            @input="character.coins.silver = +($event.target as HTMLInputElement).value"
           />
         </label>
         <label class="label floating-label">
@@ -90,10 +85,7 @@ function addTinyItem() {
             step="1"
             min="0"
             :value="character.coins.copper"
-            @input="
-              character.coins.copper = +($event.target as HTMLInputElement)
-                .value
-            "
+            @input="character.coins.copper = +($event.target as HTMLInputElement).value"
           />
         </label>
       </div>
@@ -110,10 +102,7 @@ function addTinyItem() {
             step="1"
             min="0"
             :value="character.encumbranceLimit"
-            @input="
-              character.encumbranceLimit = +($event.target as HTMLInputElement)
-                .value
-            "
+            @input="character.encumbranceLimit = +($event.target as HTMLInputElement).value"
           />
         </label>
       </div>
@@ -137,20 +126,13 @@ function addTinyItem() {
           @remove="character.inventory.splice(i, 1)"
         />
       </ul>
-      <button class="btn btn-sm min-h-[44px]" @click="showAddItem = true">
-        Add Item
-      </button>
+      <button class="btn btn-sm min-h-[44px]" @click="showAddItem = true">Add Item</button>
 
       <dialog :open="showAddItem" class="modal">
         <div class="modal-box">
           <h2 class="text-lg font-bold">Add Item</h2>
           <label for="item-name" class="label mt-2">Name</label>
-          <input
-            id="item-name"
-            v-model="newName"
-            type="text"
-            class="input w-full mb-2"
-          />
+          <input id="item-name" v-model="newName" type="text" class="input w-full mb-2" />
           <label for="item-weight" class="label">Weight</label>
           <input
             id="item-weight"
@@ -161,18 +143,10 @@ function addTinyItem() {
             step="1"
           />
           <label for="item-desc" class="label">Description</label>
-          <textarea
-            id="item-desc"
-            v-model="newDesc"
-            class="textarea w-full"
-          ></textarea>
+          <textarea id="item-desc" v-model="newDesc" class="textarea w-full"></textarea>
           <div class="modal-action">
             <button class="btn" @click="showAddItem = false">Cancel</button>
-            <button
-              class="btn btn-primary"
-              :disabled="!newName.trim()"
-              @click="addItem"
-            >
+            <button class="btn btn-primary" :disabled="!newName.trim()" @click="addItem">
               Add
             </button>
           </div>
@@ -194,33 +168,18 @@ function addTinyItem() {
           @remove="character.tinyItems.splice(i, 1)"
         />
       </ul>
-      <button class="btn btn-sm min-h-[44px]" @click="showAddTiny = true">
-        Add Tiny Item
-      </button>
+      <button class="btn btn-sm min-h-[44px]" @click="showAddTiny = true">Add Tiny Item</button>
 
       <dialog :open="showAddTiny" class="modal">
         <div class="modal-box">
           <h2 class="text-lg font-bold">Add Tiny Item</h2>
           <label for="tiny-name" class="label mt-2">Name</label>
-          <input
-            id="tiny-name"
-            v-model="newTinyName"
-            type="text"
-            class="input w-full mb-2"
-          />
+          <input id="tiny-name" v-model="newTinyName" type="text" class="input w-full mb-2" />
           <label for="tiny-desc" class="label">Description</label>
-          <textarea
-            id="tiny-desc"
-            v-model="newTinyDesc"
-            class="textarea w-full"
-          ></textarea>
+          <textarea id="tiny-desc" v-model="newTinyDesc" class="textarea w-full"></textarea>
           <div class="modal-action">
             <button class="btn" @click="showAddTiny = false">Cancel</button>
-            <button
-              class="btn btn-primary"
-              :disabled="!newTinyName.trim()"
-              @click="addTinyItem"
-            >
+            <button class="btn btn-primary" :disabled="!newTinyName.trim()" @click="addTinyItem">
               Add
             </button>
           </div>

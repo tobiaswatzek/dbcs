@@ -14,9 +14,7 @@ describe('SkillRow', () => {
 
   it('shows current value', () => {
     const w = mount(SkillRow, { props: { skill, skillId: 'acrobatics', label } })
-    expect(
-      (w.find('input[type="number"]').element as HTMLInputElement).value,
-    ).toBe('5')
+    expect((w.find('input[type="number"]').element as HTMLInputElement).value).toBe('5')
   })
 
   it('emits update:skill with new value on change', async () => {

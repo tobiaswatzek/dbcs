@@ -35,9 +35,7 @@ function updateWeapon(i: number, w: Weapon) {
           @remove="character.weapons.splice(i, 1)"
         />
       </div>
-      <button class="btn btn-sm min-h-[44px]" @click="addWeapon">
-        Add Weapon
-      </button>
+      <button class="btn btn-sm min-h-[44px]" @click="addWeapon">Add Weapon</button>
     </fieldset>
 
     <fieldset class="fieldset border-base-300 rounded-box border p-4">
@@ -49,11 +47,7 @@ function updateWeapon(i: number, w: Weapon) {
             type="text"
             class="input w-20"
             :value="character.damageBonusStr"
-            @input="
-              character.damageBonusStr = (
-                $event.target as HTMLInputElement
-              ).value
-            "
+            @input="character.damageBonusStr = ($event.target as HTMLInputElement).value"
           />
         </label>
         <label class="label floating-label">
@@ -62,11 +56,7 @@ function updateWeapon(i: number, w: Weapon) {
             type="text"
             class="input w-20"
             :value="character.damageBonusAgl"
-            @input="
-              character.damageBonusAgl = (
-                $event.target as HTMLInputElement
-              ).value
-            "
+            @input="character.damageBonusAgl = ($event.target as HTMLInputElement).value"
           />
         </label>
       </div>
@@ -83,9 +73,7 @@ function updateWeapon(i: number, w: Weapon) {
               type="text"
               class="input w-full"
               :value="character.armor.name"
-              @input="
-                character.armor.name = ($event.target as HTMLInputElement).value
-              "
+              @input="character.armor.name = ($event.target as HTMLInputElement).value"
             />
           </label>
           <label class="label floating-label">
@@ -95,8 +83,7 @@ function updateWeapon(i: number, w: Weapon) {
               class="input w-24"
               :value="character.armor.rating ?? ''"
               @input="
-                character.armor.rating = ($event.target as HTMLInputElement)
-                  .value
+                character.armor.rating = ($event.target as HTMLInputElement).value
                   ? +($event.target as HTMLInputElement).value
                   : null
               "
@@ -110,9 +97,7 @@ function updateWeapon(i: number, w: Weapon) {
                 class="checkbox checkbox-sm"
                 :checked="character.armor.banes.acrobatics"
                 @change="
-                  character.armor.banes.acrobatics = (
-                    $event.target as HTMLInputElement
-                  ).checked
+                  character.armor.banes.acrobatics = ($event.target as HTMLInputElement).checked
                 "
               />
               Acrobatics
@@ -122,11 +107,7 @@ function updateWeapon(i: number, w: Weapon) {
                 type="checkbox"
                 class="checkbox checkbox-sm"
                 :checked="character.armor.banes.evade"
-                @change="
-                  character.armor.banes.evade = (
-                    $event.target as HTMLInputElement
-                  ).checked
-                "
+                @change="character.armor.banes.evade = ($event.target as HTMLInputElement).checked"
               />
               Evade
             </label>
@@ -136,9 +117,7 @@ function updateWeapon(i: number, w: Weapon) {
                 class="checkbox checkbox-sm"
                 :checked="character.armor.banes.sneaking"
                 @change="
-                  character.armor.banes.sneaking = (
-                    $event.target as HTMLInputElement
-                  ).checked
+                  character.armor.banes.sneaking = ($event.target as HTMLInputElement).checked
                 "
               />
               Sneaking
@@ -153,11 +132,7 @@ function updateWeapon(i: number, w: Weapon) {
               type="text"
               class="input w-full"
               :value="character.helmet.name"
-              @input="
-                character.helmet.name = (
-                  $event.target as HTMLInputElement
-                ).value
-              "
+              @input="character.helmet.name = ($event.target as HTMLInputElement).value"
             />
           </label>
           <label class="label floating-label">
@@ -167,8 +142,7 @@ function updateWeapon(i: number, w: Weapon) {
               class="input w-24"
               :value="character.helmet.rating ?? ''"
               @input="
-                character.helmet.rating = ($event.target as HTMLInputElement)
-                  .value
+                character.helmet.rating = ($event.target as HTMLInputElement).value
                   ? +($event.target as HTMLInputElement).value
                   : null
               "
@@ -182,9 +156,7 @@ function updateWeapon(i: number, w: Weapon) {
                 class="checkbox checkbox-sm"
                 :checked="character.helmet.banes.awareness"
                 @change="
-                  character.helmet.banes.awareness = (
-                    $event.target as HTMLInputElement
-                  ).checked
+                  character.helmet.banes.awareness = ($event.target as HTMLInputElement).checked
                 "
               />
               Awareness
@@ -195,9 +167,7 @@ function updateWeapon(i: number, w: Weapon) {
                 class="checkbox checkbox-sm"
                 :checked="character.helmet.banes.rangedAttacks"
                 @change="
-                  character.helmet.banes.rangedAttacks = (
-                    $event.target as HTMLInputElement
-                  ).checked
+                  character.helmet.banes.rangedAttacks = ($event.target as HTMLInputElement).checked
                 "
               />
               Ranged Attacks
@@ -219,11 +189,7 @@ function updateWeapon(i: number, w: Weapon) {
             min="0"
             max="3"
             :value="character.deathRolls.successes"
-            @input="
-              character.deathRolls.successes = +(
-                $event.target as HTMLInputElement
-              ).value
-            "
+            @input="character.deathRolls.successes = +($event.target as HTMLInputElement).value"
           />
         </label>
         <label class="label floating-label">
@@ -235,11 +201,7 @@ function updateWeapon(i: number, w: Weapon) {
             min="0"
             max="3"
             :value="character.deathRolls.failures"
-            @input="
-              character.deathRolls.failures = +(
-                $event.target as HTMLInputElement
-              ).value
-            "
+            @input="character.deathRolls.failures = +($event.target as HTMLInputElement).value"
           />
         </label>
       </div>
