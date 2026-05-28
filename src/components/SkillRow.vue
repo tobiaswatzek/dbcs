@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Skill } from '../types/character'
+import type { FixedSkill } from '../types/character'
 
-const props = defineProps<{ skill: Skill; skillId: string }>()
-const emit = defineEmits<{ 'update:skill': [skill: Skill] }>()
+const props = defineProps<{ skill: FixedSkill; skillId: string; label: string }>()
+const emit = defineEmits<{ 'update:skill': [skill: FixedSkill] }>()
 
 function onMarkChange(e: Event) {
   emit('update:skill', {
@@ -29,11 +29,11 @@ function onValueChange(e: Event) {
         @change="onMarkChange"
       />
       <label :for="`mark-${skillId}`" class="text-sm select-none">{{
-        skill.label
+        label
       }}</label>
     </div>
     <label :for="`value-${skillId}`" class="sr-only"
-      >{{ skill.label }} value</label
+      >{{ label }} value</label
     >
     <input
       :id="`value-${skillId}`"

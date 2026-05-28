@@ -1,3 +1,8 @@
+export type FixedSkill = {
+  value: number
+  marked: boolean
+}
+
 export type Skill = {
   label: string
   value: number
@@ -88,39 +93,39 @@ export type Character = {
   coins: { gold: number; silver: number; copper: number }
 
   skills: {
-    acrobatics: Skill
-    awareness: Skill
-    bartering: Skill
-    beastLore: Skill
-    bluffing: Skill
-    bushcraft: Skill
-    crafting: Skill
-    evade: Skill
-    healing: Skill
-    huntingFishing: Skill
-    languages: Skill
-    mythsLegends: Skill
-    performance: Skill
-    persuasion: Skill
-    riding: Skill
-    seamanship: Skill
-    sleightOfHand: Skill
-    sneaking: Skill
-    spotHidden: Skill
-    swimming: Skill
+    acrobatics: FixedSkill
+    awareness: FixedSkill
+    bartering: FixedSkill
+    beastLore: FixedSkill
+    bluffing: FixedSkill
+    bushcraft: FixedSkill
+    crafting: FixedSkill
+    evade: FixedSkill
+    healing: FixedSkill
+    huntingFishing: FixedSkill
+    languages: FixedSkill
+    mythsLegends: FixedSkill
+    performance: FixedSkill
+    persuasion: FixedSkill
+    riding: FixedSkill
+    seamanship: FixedSkill
+    sleightOfHand: FixedSkill
+    sneaking: FixedSkill
+    spotHidden: FixedSkill
+    swimming: FixedSkill
   }
 
   weaponSkills: {
-    axes: Skill
-    bows: Skill
-    brawling: Skill
-    crossbows: Skill
-    hammers: Skill
-    knives: Skill
-    slings: Skill
-    spears: Skill
-    staves: Skill
-    swords: Skill
+    axes: FixedSkill
+    bows: FixedSkill
+    brawling: FixedSkill
+    crossbows: FixedSkill
+    hammers: FixedSkill
+    knives: FixedSkill
+    slings: FixedSkill
+    spears: FixedSkill
+    staves: FixedSkill
+    swords: FixedSkill
   }
 
   secondarySkills: Skill[]
