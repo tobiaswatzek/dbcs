@@ -68,6 +68,6 @@ describe("getAllCharacterSummaries", () => {
       profession: "Mage",
       updatedAt: "2026-01-01T00:00:00.000Z",
     });
-    expect(Object.keys(summaries[0])).toHaveLength(5);
+    expect(Object.keys(summaries[0]!)).toHaveLength(5);
   });
 });
