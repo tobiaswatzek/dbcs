@@ -15,7 +15,7 @@ const REQUIRED_STRINGS = [
   'weakness',
   'appearance',
   'memento',
-  'abilities',
+  'notes',
 ] as const
 
 const REQUIRED_OBJECTS = [
@@ -29,7 +29,14 @@ const REQUIRED_OBJECTS = [
   'helmet',
 ] as const
 
-const REQUIRED_ARRAYS = ['secondarySkills', 'weapons', 'inventory', 'tinyItems'] as const
+const REQUIRED_ARRAYS = [
+  'secondarySkills',
+  'heroicAbilities',
+  'spells',
+  'weapons',
+  'inventory',
+  'tinyItems',
+] as const
 
 export function parseAndValidateCharacter(json: string): ImportResult {
   let parsed: unknown

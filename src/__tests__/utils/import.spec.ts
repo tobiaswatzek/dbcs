@@ -51,4 +51,29 @@ describe('parseAndValidateCharacter', () => {
     delete obj.skills
     expect(parseAndValidateCharacter(JSON.stringify(obj)).success).toBe(false)
   })
+
+  it('rejects the old abilities-only character shape', () => {
+    const obj = JSON.parse(validJson())
+    obj.abilities = ''
+    delete obj.notes
+    const r = parseAndValidateCharacter(JSON.stringify(obj))
+    expect(r.success).toBe(false)
+    if (!r.success) expect(r.error).toContain('"notes"')
+  })
+
+  it('rejects when heroic abilities are missing', () => {
+    const obj = JSON.parse(validJson())
+    delete obj.heroicAbilities
+    const r = parseAndValidateCharacter(JSON.stringify(obj))
+    expect(r.success).toBe(false)
+    if (!r.success) expect(r.error).toContain('"heroicAbilities"')
+  })
+
+  it('rejects when spells are missing', () => {
+    const obj = JSON.parse(validJson())
+    delete obj.spells
+    const r = parseAndValidateCharacter(JSON.stringify(obj))
+    expect(r.success).toBe(false)
+    if (!r.success) expect(r.error).toContain('"spells"')
+  })
 })

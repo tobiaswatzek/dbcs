@@ -45,7 +45,7 @@ export function createBlankCharacter(): Omit<Character, 'id' | 'updatedAt'> {
     weakness: '',
     appearance: '',
     memento: '',
-    abilities: '',
+    notes: '',
     attributes: { str: 0, con: 0, agl: 0, int: 0, wil: 0, cha: 0 },
     conditions: {
       exhausted: false,
@@ -100,6 +100,8 @@ export function createBlankCharacter(): Omit<Character, 'id' | 'updatedAt'> {
       swords: { value: 0, marked: false },
     },
     secondarySkills: [],
+    heroicAbilities: [],
+    spells: [],
     weapons: [],
     armor: {
       name: '',

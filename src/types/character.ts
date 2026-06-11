@@ -41,6 +41,24 @@ export type TinyItem = {
   description: string
 }
 
+export type HeroicAbility = {
+  name: string
+  willpowerCost: number | null
+  description: string
+}
+
+export type Spell = {
+  name: string
+  school: string
+  rank: number | null
+  requirement: string
+  willpowerCost: string
+  castingTime: string
+  range: string
+  duration: string
+  description: string
+}
+
 export type CharacterSummary = {
   id: string
   name: string
@@ -60,7 +78,7 @@ export type Character = {
   weakness: string
   appearance: string
   memento: string
-  abilities: string
+  notes: string
 
   attributes: {
     str: number
@@ -129,6 +147,8 @@ export type Character = {
   }
 
   secondarySkills: Skill[]
+  heroicAbilities: HeroicAbility[]
+  spells: Spell[]
   weapons: Weapon[]
   armor: Armor
   helmet: Helmet
